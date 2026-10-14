@@ -1,0 +1,764 @@
+/* ============================================================================
+   MmasiEjikeme Studios — contact-sheet system.
+
+   The component vocabulary every frame is drawn in. A frame that invents its
+   own colour, its own type size or its own chip is a frame that cannot be
+   compared to the screen it draws — so everything below is a token or a class,
+   and nothing in a sheet is a literal.
+
+   These tokens are the contract the built Next.js app reads back as its
+   styled-components theme. Where a frame and the running site disagree about
+   a value, the site's theme wins and this file is the bug.
+
+   Devices, at their real CSS size:
+     .phone   390 × 844    — the public site on a smartphone
+     .desk   1440 × 900    — the public site on a laptop, and the studio admin
+
+   `--zoom` shrinks a frame AND its contents together via transform: scale().
+   Content inside is authored 1:1. An outline scaled without its contents
+   clips the screen's primary action and nothing says so.
+
+   Two themes, because the public site ships a theme toggle:
+     default        light editorial  — ivory, charcoal, champagne
+     .dark          dark cinematic   — near-black, warm ivory ink, champagne
+   The homepage and galleries lead in the cinematic dark; services and about
+   demonstrate the editorial light. The admin is always light.
+   ========================================================================= */
+
+:root{
+  /* ---- Champagne gold is the single accent. Fine-art, not fairground. ----- */
+  --gold-50:#faf4e6; --gold-100:#f3e6c6; --gold-200:#e7cf93; --gold-300:#d8b35f;
+  --gold-400:#c99f42; --gold-500:#b4872f; --gold-600:#8f6a21; --gold-700:#6d5017;
+
+  --ink:#1a1714; --ink-2:#4a433c; --ink-3:#7a7268; --ink-4:#a89f93;
+  --bg:#f6f3ee; --surface:#fffdf9; --surface-2:#efe9e0;
+  --line:#e7e0d5; --line-2:#d6ccbd;
+
+  --ok:#2f7d4f;     --ok-bg:#e6f3ea;
+  --warn:#8a5a12;   --warn-bg:#f8efdd;
+  --danger:#a33636; --danger-bg:#f8e9e7;
+  --info:#355f8f;   --info-bg:#e9f0f8;
+  --accent:var(--gold-500);
+
+  /* WhatsApp is its own brand colour wherever the studio asks you to chat. */
+  --wa:#25d366; --wa-600:#1ba94e; --wa-ink:#ffffff; --wa-bg:#e7f8ee;
+
+  --r-sm:5px; --r:10px; --r-lg:16px; --r-pill:999px;
+  --shadow:0 1px 2px rgba(20,16,10,.05), 0 8px 24px rgba(20,16,10,.06);
+  --shadow-lg:0 24px 60px rgba(12,10,6,.22);
+
+  /* ---- Density. The phone is comfortable; the laptop is editorial-airy. --- */
+  --pad:22px; --gap:18px; --row-h:60px; --fs:16px; --fs-sm:14px; --fs-lg:19px;
+  --ctl-h:50px;
+
+  /* ---- Type. A serif display for the editorial voice, sans for the work. -- */
+  --serif:Georgia,"Iowan Old Style","Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",
+         Arial,"Noto Sans",sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+
+  /* ---- Sheet chrome ------------------------------------------------------ */
+  --sheet-bg:#ece7df; --sheet-line:#d8d1c5; --sheet-ink:#211d18;
+  --sheet-ink-2:#5d564c; --sheet-ink-3:#8d867a;
+
+  /* ---- How far each frame shrinks on the sheet --------------------------- */
+  --zoom-phone:.86;
+  --zoom-desk:.56;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--sheet-bg);color:var(--sheet-ink);
+  font:15px/1.45 var(--sans);-webkit-text-size-adjust:100%}
+
+/* ---------- Sheet chrome -------------------------------------------------- */
+.page{max-width:1840px;margin:0 auto;padding:30px 26px 80px}
+header.doc{border-bottom:1px solid var(--sheet-line);padding-bottom:20px;margin-bottom:28px}
+header.doc h1{font-family:var(--serif);font-size:30px;font-weight:700;margin:0 0 6px;
+  letter-spacing:-.01em}
+header.doc p{margin:5px 0;font-size:14px;color:var(--sheet-ink-2);max-width:92ch}
+header.doc .note{margin-top:12px;background:var(--gold-50);border-left:3px solid var(--gold-500);
+  padding:10px 13px;font-size:13px;border-radius:0 6px 6px 0;max-width:112ch}
+header.doc .stop{margin-top:10px;background:var(--danger-bg);border-left:3px solid var(--danger);
+  padding:10px 13px;font-size:13px;border-radius:0 6px 6px 0;max-width:112ch}
+header.doc code{font-family:var(--mono);font-size:12.5px;background:var(--surface-2);
+  padding:1px 5px;border-radius:4px}
+h2.surface{font-family:var(--serif);font-size:22px;font-weight:700;margin:42px 0 4px;
+  padding-top:18px;border-top:1px solid var(--line-2);letter-spacing:-.01em}
+h2.surface + p.sub{margin:0 0 12px;font-size:13px;color:var(--sheet-ink-2);max-width:92ch}
+h3.cluster{font-size:13px;font-weight:700;margin:28px 0 12px;color:var(--sheet-ink-2);
+  text-transform:uppercase;letter-spacing:.08em}
+
+.sheet{display:grid;gap:34px 28px;align-items:start}
+.sheet.phones{grid-template-columns:repeat(auto-fill,minmax(min(calc(390px * .86),100%),1fr))}
+.sheet.desks{grid-template-columns:repeat(auto-fill,minmax(min(calc(1440px * .56),100%),1fr))}
+
+figure.frame{margin:0;min-width:0}
+figcaption{margin:0 0 9px}
+figcaption .sid{font-family:var(--mono);font-size:12px;color:var(--gold-600);display:block}
+figcaption .snm{font-size:15px;font-weight:700;display:block}
+figcaption .spu{font-size:12.5px;color:var(--sheet-ink-2);display:block}
+.fnote{margin:9px 0 0;font-size:12.5px;color:var(--sheet-ink-2);max-width:78ch;line-height:1.5}
+.fnote code{font-family:var(--mono);font-size:11.5px}
+
+/* ---------- The phone frame: 390 × 844 ------------------------------------ */
+.phonewrap{width:calc(390px * var(--zoom-phone));height:calc(844px * var(--zoom-phone));
+  overflow:hidden;border-radius:calc(34px * var(--zoom-phone));
+  box-shadow:0 1px 2px rgba(16,12,6,.06),0 12px 30px rgba(16,12,6,.12)}
+.phone{width:390px;height:844px;transform:scale(var(--zoom-phone));transform-origin:top left;
+  background:var(--bg);color:var(--ink);border:1px solid var(--line-2);
+  border-radius:calc(34px / .86);overflow:hidden;position:relative;
+  display:flex;flex-direction:column;font-family:var(--sans);
+  font-size:var(--fs);line-height:1.55}
+
+/* ---------- The desktop frame: 1440 × 900 --------------------------------- */
+.deskwrap{width:calc(1440px * var(--zoom-desk));height:calc(900px * var(--zoom-desk));
+  overflow:hidden;border-radius:10px;
+  box-shadow:0 1px 2px rgba(16,12,6,.06),0 12px 30px rgba(16,12,6,.09)}
+.desk{width:1440px;height:900px;transform:scale(var(--zoom-desk));transform-origin:top left;
+  background:var(--bg);color:var(--ink);border:1px solid var(--line-2);
+  border-radius:calc(10px / .56);overflow:hidden;display:flex;flex-direction:column;
+  position:relative;font-family:var(--sans);
+  --fs:16px;--fs-sm:14px;--fs-lg:19px;
+  font-size:16px;line-height:1.55}
+/* The admin surface uses a left rail and a pane; it overrides to compact. */
+.desk.app{flex-direction:row;--pad:16px;--gap:14px;--row-h:52px;--fs:15px;--fs-sm:13px;
+  --fs-lg:17px;--ctl-h:40px;font-size:15px;line-height:1.5}
+
+/* ---------- The full-page web frame --------------------------------------
+   A scrolling website is drawn whole, not clipped to one viewport. The `zoom`
+   property scales the element AND its layout box, so the frame takes its true
+   scaled footprint in the sheet grid and its height follows the page — unlike
+   transform:scale(), which needs a fixed-size wrapper. overflow-x is hidden so
+   nothing bleeds sideways; vertical length is the page itself, by design.
+
+   The fixed .phone/.desk frames above are kept for the states that ARE one
+   viewport: an open lightbox, the video player, the mobile drawer, the admin.
+   Carry .narrow for the phone layout and .dark for the cinematic theme. */
+.webframe{width:1440px;zoom:var(--zoom-desk);background:var(--bg);color:var(--ink);
+  border:1px solid var(--line-2);border-radius:6px;overflow:hidden;
+  display:flex;flex-direction:column;font-family:var(--sans);font-size:16px;line-height:1.55;
+  --fs:16px;--fs-sm:14px;--fs-lg:19px;
+  box-shadow:0 1px 2px rgba(16,12,6,.06),0 12px 30px rgba(16,12,6,.09)}
+.webframe.ph{width:390px;zoom:var(--zoom-phone);border-radius:22px}
+
+/* ---- Dark cinematic. The public site's lead look. ------------------------ */
+.dark{
+  --ink:#f3ede3;--ink-2:#cabfae;--ink-3:#938a7c;--ink-4:#6b6356;
+  --bg:#0b0a09;--surface:#141210;--surface-2:#1e1b16;--line:#2a261f;--line-2:#3a352b;
+  --gold-500:#d8b35f;--gold-600:#d8b35f;--gold-50:#1e1a12;--gold-100:#2a2416;
+  --gold-700:#e7cf93;
+  --ok:#4fc27e;--ok-bg:#12241a;--warn:#e0a94a;--warn-bg:#2a2010;
+  --danger:#e88a86;--danger-bg:#2c1716;--info:#7ea7d6;--info-bg:#131f2d;
+  --wa-bg:#11291c;--shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px rgba(0,0,0,.5)}
+
+/* ============================================================================
+   Public site chrome — the persistent header, footer and mobile drawer.
+   ========================================================================= */
+
+/* The header is always visible, including over an open lightbox or player. */
+.sitehead{flex:none;display:flex;align-items:center;gap:20px;height:72px;padding:0 var(--pad);
+  background:color-mix(in srgb,var(--surface) 72%,transparent);
+  border-bottom:1px solid var(--line);backdrop-filter:blur(8px);z-index:40;position:relative}
+.narrow .sitehead{height:60px;padding:0 16px}
+.brandmark{display:flex;align-items:center;gap:11px;font-family:var(--serif);font-weight:700;
+  font-size:19px;letter-spacing:.01em;white-space:nowrap}
+.brandmark .mono-m{width:34px;height:34px;border-radius:50%;flex:none;
+  border:1.5px solid var(--gold-500);color:var(--gold-600);font-family:var(--serif);
+  display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:700}
+.brandmark small{display:block;font-family:var(--sans);font-size:9.5px;font-weight:700;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--ink-3)}
+.nav{display:flex;align-items:center;gap:4px;margin:0 auto}
+.navlink{padding:8px 13px;border-radius:var(--r-sm);font-size:14px;font-weight:600;
+  color:var(--ink-2);letter-spacing:.01em;white-space:nowrap}
+.navlink.on{color:var(--ink)}
+.navlink.on::after{content:"";display:block;height:1.5px;background:var(--gold-500);
+  margin:3px 11px 0}
+.headtrail{display:flex;align-items:center;gap:10px;flex:none}
+.themetoggle{width:38px;height:38px;border-radius:var(--r-pill);border:1px solid var(--line-2);
+  background:var(--surface);display:flex;align-items:center;justify-content:center;
+  color:var(--ink-3);font-size:15px;flex:none}
+.hamburger{width:40px;height:40px;border-radius:var(--r-sm);border:1px solid var(--line-2);
+  background:var(--surface);display:none;flex-direction:column;gap:4px;align-items:center;
+  justify-content:center;flex:none}
+.hamburger i{width:18px;height:1.5px;background:var(--ink);display:block}
+.narrow .nav{display:none}
+.narrow .hamburger{display:flex}
+
+/* The full-screen mobile drawer. */
+.drawer{position:absolute;inset:0;background:var(--bg);z-index:60;display:flex;
+  flex-direction:column;padding:16px}
+.drawer .dtop{display:flex;align-items:center;justify-content:space-between;height:44px}
+.drawer .dclose{width:40px;height:40px;border-radius:var(--r-sm);border:1px solid var(--line-2);
+  display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--ink-2)}
+.drawer nav{display:flex;flex-direction:column;gap:2px;margin-top:22px}
+.drawer nav a{font-family:var(--serif);font-size:28px;font-weight:600;padding:12px 4px;
+  color:var(--ink);border-bottom:1px solid var(--line);letter-spacing:-.01em}
+.drawer nav a.on{color:var(--gold-600)}
+.drawer .dfoot{margin-top:auto;display:flex;flex-direction:column;gap:12px}
+
+/* The footer, long on a scrolling public page. */
+.sitefoot{flex:none;background:var(--surface);border-top:1px solid var(--line);
+  padding:28px var(--pad);display:flex;gap:30px;align-items:flex-start;flex-wrap:wrap}
+.narrow .sitefoot{flex-direction:column;gap:18px;padding:22px 16px}
+.sitefoot .fcol{display:flex;flex-direction:column;gap:7px;font-size:13px;color:var(--ink-3)}
+.sitefoot .fcol b{color:var(--ink);font-size:13px;letter-spacing:.04em;text-transform:uppercase;
+  font-size:11px;margin-bottom:3px}
+.sitefoot .fcol a{color:var(--ink-2)}
+.sitefoot .fbrand{font-family:var(--serif);font-size:20px;color:var(--ink);max-width:30ch}
+
+/* The scrolling body of a public page. */
+.site{flex:1;min-height:0;overflow:hidden;display:flex;flex-direction:column}
+.sitebody{flex:1;min-height:0;overflow:hidden;display:flex;flex-direction:column}
+
+/* ============================================================================
+   The work itself — images are drawn as plates, never screenshots.
+   A plate carries its own grain and a soft vignette so a frame reads as a
+   photograph, not an empty box, without shipping a single binary.
+   ========================================================================= */
+.plate{position:relative;background:
+    radial-gradient(120% 90% at 30% 20%,rgba(255,255,255,.10),transparent 60%),
+    linear-gradient(145deg,#3a332b,#1a1613 70%);
+  overflow:hidden;color:rgba(255,255,255,.5);flex:none}
+.plate.warm{background:
+    radial-gradient(120% 90% at 70% 15%,rgba(216,179,95,.22),transparent 55%),
+    linear-gradient(145deg,#4a3b27,#20180f 72%)}
+.plate.cool{background:
+    radial-gradient(110% 90% at 25% 10%,rgba(126,167,214,.18),transparent 55%),
+    linear-gradient(150deg,#2a3340,#12161c 72%)}
+.plate.portrait{background:
+    radial-gradient(90% 70% at 50% 25%,rgba(255,238,214,.16),transparent 60%),
+    linear-gradient(160deg,#4a3c33,#231b16 75%)}
+.plate::after{content:"";position:absolute;inset:0;
+  box-shadow:inset 0 0 90px rgba(0,0,0,.45);
+  background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.015) 0 1px,transparent 1px 3px)}
+.plate .ptag{position:absolute;left:14px;bottom:12px;z-index:2;font-size:11px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.82)}
+.plate .pcap{position:absolute;left:14px;bottom:12px;right:14px;z-index:2}
+.plate .pcap b{display:block;font-family:var(--serif);font-size:17px;color:#fff;font-weight:600}
+.plate .pcap span{display:block;font-size:11.5px;color:rgba(255,255,255,.72);
+  letter-spacing:.05em;text-transform:uppercase;margin-top:2px}
+
+/* ---------- Hero ---------------------------------------------------------- */
+.hero{position:relative;flex:none;display:flex;flex-direction:column;justify-content:flex-end;
+  color:#fff;overflow:hidden}
+.hero .plate{position:absolute;inset:0}
+.hero .herobody{position:relative;z-index:2;padding:0 var(--pad) 56px;max-width:860px}
+.narrow .hero .herobody{padding:0 20px 40px}
+.hero .eyebrow{font-size:12px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--gold-300);margin-bottom:16px}
+.hero h1{font-family:var(--serif);font-weight:600;font-size:64px;line-height:1.02;margin:0;
+  letter-spacing:-.02em;text-wrap:balance}
+.narrow .hero h1{font-size:40px}
+.hero p{font-size:18px;color:rgba(255,255,255,.82);max-width:46ch;margin:18px 0 26px;
+  line-height:1.5}
+.narrow .hero p{font-size:15px}
+.herocta{display:flex;gap:12px;flex-wrap:wrap}
+.scrollcue{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);z-index:2;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.6);
+  display:flex;flex-direction:column;align-items:center;gap:6px}
+.scrollcue::after{content:"";width:1px;height:26px;background:rgba(255,255,255,.4)}
+
+/* ---------- The editorial highlights grid, asymmetrical by design -------- */
+.section{padding:52px var(--pad);flex:none}
+.narrow .section{padding:34px 16px}
+.section-head{display:flex;align-items:flex-end;gap:16px;margin-bottom:26px}
+.section-head .eyebrow{font-size:11px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--gold-600);margin-bottom:8px}
+.section-head h2{font-family:var(--serif);font-weight:600;font-size:36px;letter-spacing:-.02em;
+  margin:0;line-height:1.08}
+.narrow .section-head h2{font-size:26px}
+.section-head p{color:var(--ink-3);font-size:14px;max-width:48ch;margin:4px 0 0}
+.section-head .more{margin-left:auto;flex:none}
+
+.hlgrid{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:150px;gap:16px}
+.narrow .hlgrid{grid-template-columns:repeat(2,1fr);grid-auto-rows:118px}
+.hltile{position:relative;border-radius:var(--r);overflow:hidden;cursor:pointer}
+.hltile .plate{position:absolute;inset:0}
+.hltile.big{grid-column:span 4;grid-row:span 2}
+.hltile.tall{grid-column:span 2;grid-row:span 2}
+.hltile.wide{grid-column:span 4}
+.hltile.sq{grid-column:span 2}
+.narrow .hltile.big,.narrow .hltile.wide{grid-column:span 2}
+.narrow .hltile.tall{grid-row:span 2}
+.hltile .meta{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:16px;
+  background:linear-gradient(transparent,rgba(0,0,0,.72))}
+.hltile .meta b{display:block;font-family:var(--serif);font-size:18px;color:#fff;font-weight:600}
+.hltile .meta span{font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(255,255,255,.72)}
+.hltile .zoomcue{position:absolute;top:12px;right:12px;z-index:2;width:30px;height:30px;
+  border-radius:50%;border:1px solid rgba(255,255,255,.5);color:#fff;font-size:13px;
+  display:flex;align-items:center;justify-content:center;opacity:.85}
+
+/* ---------- Featured showreel -------------------------------------------- */
+.showreel{position:relative;border-radius:var(--r-lg);overflow:hidden;height:420px;
+  display:flex;align-items:center;justify-content:center}
+.narrow .showreel{height:230px}
+.showreel .plate{position:absolute;inset:0}
+.showreel .play{position:relative;z-index:2;width:84px;height:84px;border-radius:50%;
+  background:rgba(255,255,255,.14);border:1.5px solid rgba(255,255,255,.75);
+  display:flex;align-items:center;justify-content:center;color:#fff}
+.showreel .play::after{content:"";border-left:22px solid #fff;border-top:13px solid transparent;
+  border-bottom:13px solid transparent;margin-left:5px}
+.showreel .meta{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:22px 24px;
+  background:linear-gradient(transparent,rgba(0,0,0,.7));display:flex;align-items:flex-end;gap:14px}
+.showreel .meta b{font-family:var(--serif);font-size:24px;color:#fff;font-weight:600}
+.showreel .meta span{font-size:12.5px;color:rgba(255,255,255,.76)}
+.showreel .runtime{margin-left:auto;font-size:12px;font-weight:700;letter-spacing:.08em;
+  color:rgba(255,255,255,.85);border:1px solid rgba(255,255,255,.4);border-radius:var(--r-pill);
+  padding:3px 11px;white-space:nowrap}
+
+/* ---------- Artist statement band ---------------------------------------- */
+.artistband{display:grid;grid-template-columns:260px 1fr;gap:36px;align-items:center}
+.narrow .artistband{grid-template-columns:1fr;gap:20px}
+.artistband .portrait{border-radius:var(--r);overflow:hidden;aspect-ratio:4/5;position:relative}
+.narrow .artistband .portrait{max-width:220px}
+.pullquote{font-family:var(--serif);font-size:30px;line-height:1.28;letter-spacing:-.01em;
+  font-weight:500;text-wrap:balance}
+.narrow .pullquote{font-size:22px}
+.pullquote .by{display:block;font-family:var(--sans);font-size:13px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--gold-600);margin-top:18px}
+.artistband p{color:var(--ink-2);font-size:15px;line-height:1.6;margin:16px 0 0;max-width:58ch}
+
+/* ---------- WhatsApp callout --------------------------------------------- */
+.wacallout{border-radius:var(--r-lg);padding:36px;display:flex;align-items:center;gap:24px;
+  background:var(--surface-2);border:1px solid var(--line)}
+.narrow .wacallout{flex-direction:column;align-items:flex-start;padding:24px;text-align:left}
+.wacallout .wtext{flex:1;min-width:0}
+.wacallout h3{font-family:var(--serif);font-size:28px;font-weight:600;margin:0 0 6px;
+  letter-spacing:-.01em}
+.narrow .wacallout h3{font-size:22px}
+.wacallout p{color:var(--ink-3);font-size:14px;margin:0;max-width:52ch}
+
+/* ============================================================================
+   Photography — filter tabs, masonry gallery, the darkroom lightbox.
+   ========================================================================= */
+.pagebanner{padding:60px var(--pad) 36px;border-bottom:1px solid var(--line);flex:none}
+.narrow .pagebanner{padding:36px 16px 24px}
+.pagebanner .eyebrow{font-size:11px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--gold-600);margin-bottom:12px}
+.pagebanner h1{font-family:var(--serif);font-weight:600;font-size:52px;letter-spacing:-.02em;
+  margin:0;line-height:1.03}
+.narrow .pagebanner h1{font-size:34px}
+.pagebanner p{color:var(--ink-3);font-size:15px;max-width:62ch;margin:14px 0 0;line-height:1.55}
+
+.filtertabs{display:flex;gap:8px;flex-wrap:wrap;padding:20px var(--pad);flex:none;
+  border-bottom:1px solid var(--line)}
+.narrow .filtertabs{padding:14px 16px;overflow-x:hidden}
+.filtertab{padding:8px 16px;border-radius:var(--r-pill);border:1px solid var(--line-2);
+  font-size:13px;font-weight:650;color:var(--ink-2);background:var(--surface);white-space:nowrap}
+.filtertab.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.dark .filtertab.on{background:var(--gold-500);color:#1a1510;
+  border-color:var(--gold-500)}
+
+.masonry{column-count:4;column-gap:16px;padding:24px var(--pad)}
+.narrow .masonry{column-count:2;column-gap:12px;padding:16px}
+.shot{break-inside:avoid;margin-bottom:16px;border-radius:var(--r-sm);overflow:hidden;
+  position:relative;cursor:pointer}
+.narrow .shot{margin-bottom:12px}
+.shot .plate{width:100%}
+.shot .cap{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:12px;
+  background:linear-gradient(transparent,rgba(0,0,0,.66));opacity:0}
+.shot .cap b{display:block;font-family:var(--serif);font-size:15px;color:#fff;font-weight:600}
+.shot .cap span{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(255,255,255,.72)}
+/* Captions ride on hover on the real site; drawn open here so the sheet shows
+   what a reader sees when they reach for an image. */
+.shot.hover .cap{opacity:1}
+
+/* The darkroom lightbox: the work, full, with its technical card beside it. */
+.lightbox{position:absolute;inset:0;top:72px;z-index:30;display:flex;
+  background:rgba(8,7,6,.94)}
+.narrow .lightbox{top:60px;flex-direction:column}
+.lightbox .stage{flex:1;min-width:0;display:flex;align-items:center;justify-content:center;
+  padding:28px;position:relative}
+.lightbox .stage .plate{max-width:100%;max-height:100%;aspect-ratio:4/5;width:auto;height:92%;
+  border-radius:var(--r-sm)}
+.narrow .lightbox .stage{padding:16px}
+.lightbox .lnav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;
+  border-radius:50%;border:1px solid rgba(255,255,255,.3);color:#fff;display:flex;
+  align-items:center;justify-content:center;font-size:20px}
+.lightbox .lnav.prev{left:16px} .lightbox .lnav.next{right:16px}
+.lightbox .lclose{position:absolute;top:16px;right:16px;width:40px;height:40px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.3);color:#fff;display:flex;align-items:center;
+  justify-content:center;font-size:18px;z-index:3}
+.lightbox .specs{width:338px;flex:none;background:var(--surface);color:var(--ink);
+  padding:28px 24px;overflow:hidden;display:flex;flex-direction:column;gap:18px}
+.narrow .lightbox .specs{width:auto;flex:1;padding:18px 16px}
+.lightbox .specs .cat{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold-600)}
+.lightbox .specs h3{font-family:var(--serif);font-size:26px;font-weight:600;margin:4px 0 0;
+  line-height:1.15}
+.lightbox .specs .caption{font-size:14px;color:var(--ink-2);line-height:1.55}
+.speclist{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line)}
+.speclist .sl{display:flex;justify-content:space-between;gap:12px;padding:10px 0;
+  border-bottom:1px solid var(--line);font-size:13px}
+.speclist .sl .k{color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-size:11px;
+  font-weight:650}
+.speclist .sl .v{font-weight:600;text-align:right}
+
+/* ============================================================================
+   Films & reels — vertical reel cards, widescreen cinema cards, the player.
+   ========================================================================= */
+.reelrow{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;padding:0 var(--pad)}
+.narrow .reelrow{grid-template-columns:repeat(2,1fr);gap:12px;padding:0 16px}
+.reel{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:9/16;cursor:pointer}
+.reel .plate{position:absolute;inset:0}
+.reel .dur{position:absolute;top:10px;right:10px;z-index:2;font-size:11px;font-weight:700;
+  color:#fff;background:rgba(0,0,0,.55);border-radius:var(--r-pill);padding:2px 9px;
+  letter-spacing:.04em}
+.reel .rmeta{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:12px;
+  background:linear-gradient(transparent,rgba(0,0,0,.7))}
+.reel .rmeta b{display:block;font-family:var(--serif);font-size:15px;color:#fff;font-weight:600;
+  line-height:1.2}
+.reel .rmeta span{font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(255,255,255,.7)}
+.reel .rplay{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;
+  width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.16);
+  border:1px solid rgba(255,255,255,.7);display:flex;align-items:center;justify-content:center}
+.reel .rplay::after{content:"";border-left:13px solid #fff;border-top:8px solid transparent;
+  border-bottom:8px solid transparent;margin-left:3px}
+
+.cinerow{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;padding:0 var(--pad)}
+.narrow .cinerow{grid-template-columns:1fr;gap:16px;padding:0 16px}
+.cine{border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:var(--surface)}
+.cine .thumb{position:relative;aspect-ratio:16/9}
+.cine .thumb .plate{position:absolute;inset:0}
+.cine .thumb .res{position:absolute;top:12px;left:12px;z-index:2;font-size:11px;font-weight:700;
+  color:#fff;background:rgba(0,0,0,.55);border-radius:var(--r-sm);padding:2px 9px;letter-spacing:.05em}
+.cine .thumb .rplay{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;
+  width:62px;height:62px;border-radius:50%;background:rgba(255,255,255,.16);
+  border:1.5px solid rgba(255,255,255,.75);display:flex;align-items:center;justify-content:center}
+.cine .thumb .rplay::after{content:"";border-left:18px solid #fff;border-top:11px solid transparent;
+  border-bottom:11px solid transparent;margin-left:4px}
+.cine .cbody{padding:16px 18px}
+.cine .cbody .ctag{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--gold-600)}
+.cine .cbody h4{font-family:var(--serif);font-size:20px;font-weight:600;margin:5px 0 6px}
+.cine .cbody p{color:var(--ink-3);font-size:13.5px;line-height:1.5;margin:0}
+.cine .cbody .cfoot2{display:flex;align-items:center;gap:12px;margin-top:12px;
+  font-size:12px;color:var(--ink-3)}
+
+/* The video player, over the page with the header still visible. */
+.player{position:absolute;inset:0;top:72px;z-index:30;background:rgba(8,7,6,.95);
+  display:flex;flex-direction:column}
+.narrow .player{top:60px}
+.player .stage{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;
+  padding:28px;position:relative}
+.player .frame16{width:100%;max-width:980px;aspect-ratio:16/9;border-radius:var(--r);
+  position:relative;overflow:hidden}
+.player .frame16 .plate{position:absolute;inset:0}
+.player .lclose{position:absolute;top:16px;right:16px;width:40px;height:40px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.3);color:#fff;display:flex;align-items:center;
+  justify-content:center;font-size:18px}
+.player .controls{display:flex;align-items:center;gap:14px;padding:12px 24px;color:#fff;
+  background:rgba(0,0,0,.4)}
+.player .controls .pbtn{width:30px;height:30px;flex:none}
+.player .scrub{flex:1;height:4px;border-radius:2px;background:rgba(255,255,255,.25);position:relative}
+.player .scrub::after{content:"";position:absolute;left:0;top:0;bottom:0;width:38%;
+  background:var(--gold-500);border-radius:2px}
+.player .controls .t{font-size:12px;font-variant-numeric:tabular-nums;color:rgba(255,255,255,.8)}
+.player .pmeta{padding:16px 24px;color:#fff;display:flex;align-items:flex-end;gap:14px;
+  background:rgba(0,0,0,.5)}
+.player .pmeta b{font-family:var(--serif);font-size:22px;font-weight:600}
+.player .pmeta span{font-size:12.5px;color:rgba(255,255,255,.7)}
+
+/* ============================================================================
+   Services & investment — discipline cards, deliverables, per-service CTA.
+   ========================================================================= */
+.servicegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding:0 var(--pad)}
+.narrow .servicegrid{grid-template-columns:1fr;gap:16px;padding:0 16px}
+.servicecard{border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);
+  padding:28px 24px;display:flex;flex-direction:column;gap:16px}
+.servicecard.feature{border-color:var(--gold-500);box-shadow:0 0 0 1px var(--gold-500)}
+.servicecard .stag{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--gold-600)}
+.servicecard h3{font-family:var(--serif);font-size:24px;font-weight:600;margin:0;line-height:1.1}
+.servicecard .sdesc{color:var(--ink-3);font-size:13.5px;line-height:1.5;margin:0}
+.servicecard .invest{font-family:var(--serif);font-size:15px;color:var(--ink-2)}
+.servicecard .invest b{font-size:26px;color:var(--ink);letter-spacing:-.01em}
+.delivers{display:flex;flex-direction:column;gap:9px;margin:0;padding:0;list-style:none}
+.delivers li{display:flex;gap:10px;font-size:13.5px;color:var(--ink-2);line-height:1.4}
+.delivers li::before{content:"";width:16px;height:16px;border-radius:50%;flex:none;margin-top:2px;
+  background:var(--gold-50);border:1px solid var(--gold-300);
+  background-image:linear-gradient(var(--gold-600),var(--gold-600));
+  background-size:7px 2px;background-repeat:no-repeat;background-position:center}
+
+/* ---------- About — production kit --------------------------------------- */
+.kitgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding:0 var(--pad)}
+.narrow .kitgrid{grid-template-columns:1fr;gap:14px;padding:0 16px}
+.kitcard{border:1px solid var(--line);border-radius:var(--r);padding:20px;background:var(--surface)}
+.kitcard h4{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gold-600);margin:0 0 12px}
+.kitcard ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.kitcard li{font-size:14px;color:var(--ink-2);display:flex;justify-content:space-between;gap:10px;
+  padding-bottom:8px;border-bottom:1px solid var(--line)}
+.kitcard li:last-child{border-bottom:0;padding-bottom:0}
+.kitcard li span{color:var(--ink-4);font-size:12px}
+
+/* ============================================================================
+   Contact — the session inquiry builder with a live WhatsApp preview.
+   ========================================================================= */
+.builder{display:grid;grid-template-columns:1fr 380px;gap:28px;padding:0 var(--pad)}
+.narrow .builder{grid-template-columns:1fr;gap:20px;padding:0 16px}
+.formgrid{display:flex;flex-direction:column;gap:16px}
+.formrow2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.narrow .formrow2{grid-template-columns:1fr}
+.textarea{min-height:92px;border:1px solid var(--line-2);border-radius:var(--r-sm);
+  background:var(--surface);padding:12px;font-size:var(--fs);color:var(--ink-2);line-height:1.5}
+/* The live preview: the exact WhatsApp message the button will send. */
+.wapreview{border-radius:var(--r-lg);border:1px solid var(--line);overflow:hidden;
+  background:var(--wa-bg);display:flex;flex-direction:column;align-self:start}
+.dark .wapreview{background:var(--surface-2)}
+.wapreview .wptop{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--wa);
+  color:#fff}
+.wapreview .wptop .wav{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.25);
+  flex:none;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px}
+.wapreview .wptop b{font-size:14px;line-height:1.1}
+.wapreview .wptop span{font-size:11px;color:rgba(255,255,255,.85)}
+.wapreview .wpbody{padding:16px 14px;display:flex;flex-direction:column;gap:4px}
+.wapreview .bubble{background:var(--surface);border-radius:12px 12px 12px 4px;padding:11px 13px;
+  font-size:13px;line-height:1.55;color:var(--ink-2);box-shadow:var(--shadow);max-width:92%}
+.wapreview .bubble .lbl{color:var(--ink-4);font-size:11px}
+.wapreview .wplabel{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-3);padding:0 14px}
+.wapreview .wpfoot{padding:14px;border-top:1px solid var(--line);margin-top:auto}
+
+.coords{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;padding:0 var(--pad)}
+.narrow .coords{grid-template-columns:1fr;padding:0 16px}
+.coord{border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;background:var(--surface)}
+.coord .k{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-3)}
+.coord .v{font-size:17px;font-weight:600;margin-top:5px}
+.coord .v.wa{color:var(--wa-600)}
+.socials{display:flex;gap:10px;flex-wrap:wrap}
+.socials a{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:var(--r-pill);
+  border:1px solid var(--line-2);font-size:13px;font-weight:650;color:var(--ink-2)}
+
+/* ============================================================================
+   Case study — /work/[slug].
+   ========================================================================= */
+.casecover{position:relative;flex:none;height:480px;display:flex;flex-direction:column;
+  justify-content:flex-end;color:#fff;overflow:hidden}
+.narrow .casecover{height:320px}
+.casecover .plate{position:absolute;inset:0}
+.casecover .cbody{position:relative;z-index:2;padding:0 var(--pad) 44px;max-width:780px}
+.narrow .casecover .cbody{padding:0 16px 28px}
+.casecover .ctag{font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold-300);margin-bottom:12px}
+.casecover h1{font-family:var(--serif);font-weight:600;font-size:52px;letter-spacing:-.02em;
+  margin:0;line-height:1.04}
+.narrow .casecover h1{font-size:32px}
+.specribbon{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);flex:none}
+.narrow .specribbon{grid-template-columns:repeat(2,1fr)}
+.specribbon .sr{padding:18px var(--pad);border-left:1px solid var(--line)}
+.specribbon .sr:first-child{border-left:0}
+.specribbon .sr .k{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-4)}
+.specribbon .sr .v{font-size:15px;font-weight:600;margin-top:5px}
+.casebody{padding:44px var(--pad);max-width:720px}
+.narrow .casebody{padding:28px 16px}
+.casebody h3{font-family:var(--serif);font-size:15px;font-weight:700;letter-spacing:.04em;
+  text-transform:uppercase;color:var(--gold-600);margin:0 0 12px}
+.casebody p{font-size:16px;line-height:1.7;color:var(--ink-2);margin:0 0 18px}
+.framestack{display:flex;flex-direction:column;gap:16px;padding:0 var(--pad) 44px}
+.narrow .framestack{padding:0 16px 28px}
+.framestack .plate{width:100%;border-radius:var(--r-sm)}
+
+/* ============================================================================
+   Shared component vocabulary.
+   ========================================================================= */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:var(--pad)}
+.card h5{margin:0 0 10px;font-size:14px;font-weight:700;letter-spacing:-.01em}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:var(--ctl-h);
+  padding:0 20px;border-radius:var(--r-sm);border:1px solid var(--line-2);background:var(--surface);
+  font-size:var(--fs);font-weight:650;white-space:nowrap;color:var(--ink);letter-spacing:.01em}
+.btn.pri{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.dark .btn.pri{background:var(--gold-500);border-color:var(--gold-500);
+  color:#1a1510}
+.btn.gold{background:var(--gold-500);border-color:var(--gold-500);color:#1a1510}
+.btn.ghost{background:transparent;border-color:transparent;color:inherit}
+.btn.outline{background:transparent;border-color:currentColor}
+.btn.danger{background:var(--danger);border-color:var(--danger);color:#fff}
+.btn.block{width:100%}
+.btn.lg{height:56px;font-size:17px;border-radius:var(--r);padding:0 26px}
+.btn.sm{height:36px;font-size:13px;padding:0 13px}
+/* The WhatsApp action, in WhatsApp green, wherever a chat begins. */
+.btn.wa{background:var(--wa);border-color:var(--wa);color:var(--wa-ink)}
+/* The WhatsApp glyph, drawn: a speech bubble with its tail, in one span. */
+.btn.wa .waglyph{width:17px;height:17px;border-radius:50% 50% 50% 2px;background:#fff;flex:none;
+  position:relative}
+.btn.wa .waglyph::after{content:"";position:absolute;inset:4px;border-radius:50%;
+  border:2px solid var(--wa);border-right-color:transparent;transform:rotate(38deg)}
+
+.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 11px;border-radius:var(--r-pill);
+  background:var(--surface-2);color:var(--ink-2);font-size:var(--fs-sm);font-weight:600;
+  white-space:nowrap}
+.chip.on{background:var(--gold-50);color:var(--gold-700);box-shadow:inset 0 0 0 1px var(--gold-300)}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+
+/* Status is a word AND a colour, never a colour alone. */
+.status{display:inline-flex;align-items:center;gap:6px;padding:3px 11px;border-radius:var(--r-pill);
+  font-size:var(--fs-sm);font-weight:650;line-height:1.6;white-space:nowrap}
+.status::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;flex:none}
+.status.is-ok{color:var(--ok);background:var(--ok-bg)}
+.status.is-warn{color:var(--warn);background:var(--warn-bg)}
+.status.is-danger{color:var(--danger);background:var(--danger-bg)}
+.status.is-info{color:var(--info);background:var(--info-bg)}
+.status.is-idle{color:var(--ink-3);background:var(--surface-2)}
+
+.badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;
+  letter-spacing:.05em;border-radius:var(--r-sm);padding:2px 8px;background:var(--surface-2);
+  color:var(--ink-2)}
+
+/* Forms */
+.label{font-size:var(--fs-sm);font-weight:650;color:var(--ink-2);display:block;margin-bottom:7px}
+.input{display:flex;align-items:center;gap:8px;height:var(--ctl-h);padding:0 13px;
+  border:1px solid var(--line-2);border-radius:var(--r-sm);background:var(--surface);
+  font-size:var(--fs);color:var(--ink-3)}
+.input.filled{color:var(--ink)}
+.input.focus{border-color:var(--gold-500);box-shadow:0 0 0 3px var(--gold-50)}
+.hint{font-size:var(--fs-sm);color:var(--ink-3);margin-top:6px}
+.field-err{font-size:var(--fs-sm);color:var(--danger);margin-top:6px;font-weight:600}
+.fsel{display:inline-flex;align-items:center;height:var(--ctl-h);padding:0 13px;
+  border:1px solid var(--line-2);border-radius:var(--r-sm);background:var(--surface);
+  font-size:var(--fs);color:var(--ink);white-space:nowrap;width:100%;justify-content:space-between}
+.fsel.ph{color:var(--ink-3)}
+.fsel::after{content:"\2304";color:var(--ink-3);font-size:15px;line-height:1}
+.fsel.on{border-color:var(--gold-500);box-shadow:0 0 0 3px var(--gold-50)}
+
+.toggle{width:46px;height:26px;border-radius:var(--r-pill);background:var(--line-2);
+  position:relative;display:inline-block;flex:none}
+.toggle::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;
+  border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+.toggle.on{background:var(--gold-500)}
+.toggle.on::after{left:23px}
+
+.seg{display:inline-flex;background:var(--surface-2);border-radius:var(--r-sm);padding:3px;gap:3px}
+.seg span{padding:7px 14px;font-size:var(--fs-sm);font-weight:650;color:var(--ink-3);
+  border-radius:calc(var(--r-sm) - 1px)}
+.seg span.on{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+
+/* Every screen has a real empty state and a failure state with a reason. */
+.empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+  padding:56px 24px;text-align:center;color:var(--ink-3);flex:1}
+.empty .eglyph{width:56px;height:56px;border-radius:16px;background:var(--surface-2);
+  border:1px solid var(--line);margin-bottom:4px}
+.empty .etitle{color:var(--ink-2);font-weight:700;font-size:16px;font-family:var(--serif)}
+.empty p{margin:0;font-size:var(--fs-sm);max-width:38ch;line-height:1.5}
+.empty .ebtn{margin-top:14px}
+.failure{display:flex;flex-direction:column;gap:10px;padding:16px;border-radius:var(--r);
+  background:var(--danger-bg);color:var(--danger);border:1px solid currentColor;
+  font-size:var(--fs-sm);line-height:1.5}
+
+/* Skeletons, for a screen drawn mid-load. */
+.skel{background:var(--surface-2);border-radius:var(--r-sm);height:14px}
+.skel.t{height:22px} .skel.w60{width:60%} .skel.w40{width:40%} .skel.w80{width:80%}
+.skel.plate{aspect-ratio:4/5;height:auto;background:var(--surface-2)}
+
+/* ============================================================================
+   Admin vocabulary — the studio dashboard. Light only.
+   ========================================================================= */
+.rail{width:236px;flex:none;background:var(--surface);border-right:1px solid var(--line);
+  display:flex;flex-direction:column;padding:16px 12px;gap:2px}
+.rail .brand{display:flex;align-items:center;gap:10px;padding:4px 8px 16px;
+  font-family:var(--serif);font-weight:700;font-size:16px}
+.rail .brand .mono-m{width:30px;height:30px;border-radius:50%;border:1.5px solid var(--gold-500);
+  color:var(--gold-600);display:flex;align-items:center;justify-content:center;font-size:15px;
+  flex:none}
+.rentry{display:flex;align-items:center;gap:10px;padding:9px 11px;border-radius:var(--r-sm);
+  color:var(--ink-2);font-size:14px;font-weight:550}
+.rentry .ic{width:16px;height:16px;border-radius:4px;background:currentColor;opacity:.5;flex:none}
+.rentry.on{background:var(--gold-50);color:var(--gold-700);font-weight:650}
+.rentry.on .ic{opacity:.9}
+.rentry .count{margin-left:auto;font-size:11px;font-weight:700;background:var(--surface-2);
+  border-radius:var(--r-pill);padding:1px 8px;color:var(--ink-3)}
+.rentry.on .count{background:var(--gold-100);color:var(--gold-700)}
+.rail .spacer{flex:1}
+.rail .ruser{display:flex;align-items:center;gap:10px;padding:10px 8px;border-top:1px solid var(--line)}
+.rail .ruser .av{width:30px;height:30px;border-radius:50%;background:var(--surface-2);flex:none;
+  display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;
+  color:var(--ink-2)}
+
+.pane{flex:1;min-width:0;display:flex;flex-direction:column;overflow:hidden}
+.phead{flex:none;display:flex;align-items:center;gap:12px;padding:20px 24px 14px}
+.phead h4{margin:0;font-family:var(--serif);font-size:24px;font-weight:600;letter-spacing:-.01em}
+.phead .psub{font-size:13px;color:var(--ink-3);margin:3px 0 0}
+.pacts{margin-left:auto;display:flex;align-items:center;gap:10px}
+.pcontent{flex:1;min-height:0;overflow:hidden;padding:0 24px 24px;display:flex;flex-direction:column;
+  gap:var(--gap)}
+
+.fbar{display:flex;align-items:center;gap:10px;flex:none}
+.fsrch{display:inline-flex;align-items:center;gap:8px;height:var(--ctl-h);padding:0 13px;min-width:240px;
+  border:1px solid var(--line-2);border-radius:var(--r-sm);background:var(--surface);
+  font-size:var(--fs-sm);color:var(--ink-3)}
+.fbar .ftrail{margin-left:auto;display:inline-flex;gap:10px;align-items:center}
+
+/* Tables */
+.tcard{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);overflow:hidden}
+table{width:100%;border-collapse:collapse}
+th{text-align:left;font-size:var(--fs-sm);font-weight:650;color:var(--ink-3);text-transform:uppercase;
+  letter-spacing:.05em;padding:0 14px;height:40px;border-bottom:1px solid var(--line);
+  white-space:nowrap;background:var(--surface-2);font-size:11px}
+td{padding:0 14px;height:var(--row-h);border-bottom:1px solid var(--line);vertical-align:middle;
+  font-size:var(--fs-sm)}
+tr:last-child td{border-bottom:0}
+td .sub{display:block;font-size:12px;color:var(--ink-3);line-height:1.3}
+tbody tr.sel{background:var(--gold-50)}
+.tthumb{width:46px;height:46px;border-radius:var(--r-sm);overflow:hidden;position:relative;flex:none}
+.tthumb .plate{position:absolute;inset:0}
+
+/* Grids inside a pane */
+.g2{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--gap)}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap)}
+.split{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:var(--gap);flex:1;
+  min-height:0}
+
+.stat{display:flex;flex-direction:column;gap:3px}
+.stat-val{font-family:var(--serif);font-size:30px;font-weight:600;letter-spacing:-.02em;
+  line-height:1.1;font-variant-numeric:tabular-nums}
+.stat-label{color:var(--ink-3);font-size:11px;text-transform:uppercase;letter-spacing:.07em;
+  font-weight:650}
+
+/* A modal centred over the admin, for sharing and confirming. */
+.scrim{position:absolute;inset:0;background:rgba(14,11,7,.5);z-index:50;display:flex;
+  align-items:center;justify-content:center;padding:40px}
+.dialog{width:440px;max-width:100%;background:var(--surface);border-radius:var(--r-lg);
+  box-shadow:var(--shadow-lg);overflow:hidden;display:flex;flex-direction:column}
+.dialog .dhead{padding:20px 22px 0}
+.dialog .dhead h3{font-family:var(--serif);font-size:20px;font-weight:600;margin:0}
+.dialog .dhead p{font-size:13px;color:var(--ink-3);margin:5px 0 0}
+.dialog .dbody{padding:18px 22px;display:flex;flex-direction:column;gap:14px}
+.dialog .dfoot{padding:16px 22px;border-top:1px solid var(--line);display:flex;gap:10px;
+  justify-content:flex-end}
+/* A copy-link field with its confirmation. */
+.copyrow{display:flex;gap:0;border:1px solid var(--line-2);border-radius:var(--r-sm);overflow:hidden}
+.copyrow .url{flex:1;min-width:0;padding:0 13px;display:flex;align-items:center;font-size:13px;
+  font-family:var(--mono);color:var(--ink-2);background:var(--surface-2);overflow:hidden;
+  white-space:nowrap;text-overflow:ellipsis;height:var(--ctl-h)}
+.copyrow .cbtn{flex:none;border:0;border-left:1px solid var(--line-2);background:var(--surface);
+  padding:0 16px;font-weight:650;font-size:13px;color:var(--ink)}
+.copied{display:inline-flex;align-items:center;gap:6px;color:var(--ok);font-size:12.5px;
+  font-weight:650}
+.copied::before{content:"\2713";font-weight:700}
+
+/* The shared sign-in card, centred. */
+.signwrap{flex:1;display:flex;align-items:center;justify-content:center;padding:40px}
+.signcard{width:400px;max-width:100%;background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--r-lg);padding:34px 30px;box-shadow:var(--shadow);display:flex;
+  flex-direction:column;gap:16px}
+.signcard .brandmark{justify-content:center;margin-bottom:6px}
+
+/* ---------- Narrow viewports ---------------------------------------------- */
+@media (max-width:1280px){ :root{ --zoom-desk:.40; } }
+@media (max-width:820px){ :root{ --zoom-desk:.30; --zoom-phone:.74; } }
+@media (max-width:430px){
+  :root{ --zoom-desk:.24; --zoom-phone:.62; }
+  .page{padding:22px 16px 56px}
+}
+.phonewrap{max-width:100%}
+.deskwrap{max-width:100%}

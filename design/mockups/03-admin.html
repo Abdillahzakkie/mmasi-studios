@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MmasiEjikeme Studios — Studio admin contact sheet (10 frames, web only)</title>
+<link rel="stylesheet" href="system.css">
+</head>
+<body>
+<div class="page">
+
+<header class="doc">
+  <h1>MmasiEjikeme Studios — Studio admin contact sheet</h1>
+  <p>Ten frames of the studio admin: the fixed app shell MmasiEjikeme signs into
+     to keep the portfolio current, read the inquiries the public site routes in,
+     and share any photograph or reel with a client. Every frame is drawn at
+     1440 × 900 in the editorial light theme — the admin never carries the
+     cinematic dark — laid out as a 236px rail beside a pane.</p>
+  <p>The admin exists so the work stays current without a developer. A new
+     photograph or reel is added here, a caption is fixed here, and an inquiry
+     moves from New to Booked here. Every piece carries a one-click share that
+     opens WhatsApp with the client, so a conversation starts from the studio's
+     own screen in seconds.</p>
+  <p class="note"><strong>Vocabulary is frozen.</strong> Every frame is drawn in
+     <code>design/mockups/system.css</code> and invents no class, colour or type
+     size of its own. WhatsApp is <code>+234 814 709 9175</code>; the share and
+     reply actions open it in <code>.btn.wa</code> green. Status is a word and a
+     colour together, never a colour alone.</p>
+  <p class="stop"><strong>WEB ONLY. No admin frame is ever built on the
+     phone.</strong> The studio curates from a desk — a portfolio table read
+     row by row, a photograph edited beside its live preview, an inquiry opened
+     to its full vision. The public site is where a client books on their phone;
+     the admin is where the studio answers from a laptop.</p>
+</header>
+
+<h2 class="surface">Access</h2>
+<p class="sub">One shared studio sign-in. The whole team works from a single
+   account, so the card names the studio, not a person.</p>
+
+<div class="sheet desks">
+
+  <!-- ============================== adm-signin ============================ -->
+  <figure class="frame">
+    <figcaption>
+      <span class="sid">adm-signin</span>
+      <span class="snm">Sign in</span>
+      <span class="spu">/admin/sign-in — the shared studio sign-in, one centred card</span>
+    </figcaption>
+    <div class="deskwrap"><div class="desk app">
+      <div class="signwrap">
+        <div class="signcard">
+          <div class="brandmark"><span class="mono-m">M</span> MmasiEjikeme
+            <small>Studios</small></div>
+          <div>
+            <span class="label">Studio email</span>
+            <div class="input filled">studio@mmasiejikeme.studio</div>
+          </div>
+          <div>
+            <span class="label">Password</span>
+            <div class="input">••••••••••••</div>
+          </div>
+          <span class="btn pri block">Sign in to the studio</span>
+          <p class="hint">One account for the whole studio. Every change — a new
+            photograph, a booked inquiry — is made from here.</p>
+        </div>
+      </div>
+    </div></div>
+    <p class="fnote">The sign-in names the studio rather than an individual
+      because the portfolio, the reels and the inquiries belong to the studio,
+      not to whoever is at the desk. A single card keeps the first screen quiet:
+      the work is behind it, and the editorial light carries through.</p>
+  </figure>
+
+</div>
+
+<h2 class="surface">Portfolio</h2>
+<p class="sub">The photographs and reels the public site reads, the forms that add
+   or fix one, the share dialog that sends a piece to a client, and what the
+   studio sees on day one before a single frame is uploaded.</p>
+
+<div class="sheet desks">
+
+  <!-- ============================= adm-portfolio ========================== -->
+  <figure class="frame">
+    <figcaption>
+      <span class="sid">adm-portfolio</span>
+      <span class="snm">Portfolio</span>
+      <span class="spu">/admin — the photographs and reels, filterable, with share and edit per item</span>
+    </figcaption>
+    <div class="deskwrap"><div class="desk app">
+      <nav class="rail">
+        <div class="brand"><span class="mono-m">M</span> MmasiEjikeme</div>
+        <div class="rentry on"><span class="ic"></span> Portfolio</div>
+        <div class="rentry"><span class="ic"></span> Reels &amp; Films</div>
+        <div class="rentry"><span class="ic"></span> Inquiries <span class="count">3</span></div>
+        <div class="rentry"><span class="ic"></span> Settings</div>
+        <div class="spacer"></div>
+        <div class="ruser"><span class="av">ME</span> <span>MmasiEjikeme</span></div>
+      </nav>
+      <section class="pane">
+        <div class="phead">
+          <div><h4>Portfolio</h4>
+            <p class="psub">58 photographs · 5 published today</p></div>
+          <div class="pacts">
+            <span class="btn pri">Add photograph</span>
+          </div>
+        </div>
+        <div class="pcontent">
+          <div class="fbar">
+            <span class="fsrch">Search title, location or caption</span>
+            <span class="fsel">Category: All</span>
+            <span class="ftrail"><span class="fsel">Status: All</span></span>
+          </div>
+          <div class="tcard">
+            <table>
+              <thead><tr>
+                <th>Photograph</th><th>Category</th><th>Capture</th>
+                <th>Status</th><th>Actions</th>
+              </tr></thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <span class="tthumb"><span class="plate warm"></span></span>
+                    Golden Hour, Lekki<span class="sub">Lekki Phase 1, Lagos</span>
+                  </td>
+                  <td><span class="chip">Weddings</span></td>
+                  <td>Sony FX6 · 50mm f/1.2 · 2026</td>
+                  <td><span class="status is-ok">Published</span></td>
+                  <td><span class="btn wa sm"><span class="waglyph"></span> Share</span>
+                    <span class="btn sm">Edit</span></td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="tthumb"><span class="plate portrait"></span></span>
+                    Aso-Oke, Unworn<span class="sub">A full-length study of a hand-woven
+                      aso-oke before the ceremony, shot against the window light of the
+                      family house in Surulere so the gold thread reads true.</span>
+                  </td>
+                  <td><span class="chip">Fashion &amp; Editorial</span></td>
+                  <td>Fujifilm GFX 100 · 110mm · 2025</td>
+                  <td><span class="status is-ok">Published</span></td>
+                  <td><span class="btn wa sm"><span class="waglyph"></span> Share</span>
+                    <span class="btn sm">Edit</span></td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="tthumb"><span class="plate"></span></span>
+                    Executive Monograph<span class="sub">Ikoyi, Lagos</span>
+                  </td>
+                  <td><span class="chip">Portraits</span></td>
+                  <td>Sony Alpha 1 · 85mm f/1.4 · 2026</td>
+                  <td><span class="status is-idle">Draft</span></td>
+                  <td><span class="btn wa sm"><span class="waglyph"></span> Share</span>
+                    <span class="btn sm">Edit</span></td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="tthumb"><span class="plate cool"></span></span>
+                    Market Blues<span class="sub">Balogun Market, Lagos Island</span>
+                  </td>
+                  <td><span class="chip">Commercial &amp; Brand</span></td>
+                  <td>Sony FX6 · 35mm · 2025</td>
+                  <td><span class="status is-ok">Published</span></td>
+                  <td><span class="btn wa sm"><span class="waglyph"></span> Share</span>
+                    <span class="btn sm">Edit</span></td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="tthumb"><span class="plate"></span></span>
+                    Dawn Resort, frame 12<span class="sub">Re-upload — last image failed to process at 142 MB</span>
+                  </td>
+                  <td><span class="chip">Events</span></td>
+                  <td>Sony Alpha 1 · 24mm · 2026</td>
+                  <td><span class="status is-idle">Draft</span></td>
+                  <td><span class="btn wa sm"><span class="waglyph"></span> Share</span>
+                    <span class="btn sm">Edit</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div></div>
+    <p class="fnote">A draft row keeps its place in the table rather than hiding
+      until it is ready — the studio can see the Dawn Resort frame is waiting on a
+      re-upload and the Executive Monograph on a caption, so nothing is forgotten
+      between shoots. Share sits beside Edit on every row because sending a piece
+      to a client is as routine as editing it. The long aso-oke caption wraps to
+      three lines and the row grows with it; truncating it would hide the half
+      that explains the frame.</p>
+  </figure>
+
+  <!-- ============================ adm-photo-edit ========================== -->
+  <figure class="frame">
+    <figcaption>
+      <span class="sid">adm-photo-edit</span>
+      <span class="snm">Add / edit photograph</span>
+      <span class="spu">/admin/photographs/golden-hour-lekki — the metadata beside a live preview</span>
+    </figcaption>
+    <div class="deskwrap"><div class="desk app">
+      <nav class="rail">
+        <div class="brand"><span class="mono-m">M</span> MmasiEjikeme</div>
+        <div class="rentry on"><span class="ic"></span> Portfolio</div>
+        <div class="rentry"><span class="ic"></span> Reels &amp; Films</div>
+        <div class="rentry"><span class="ic"></span> Inquiries <span class="count">3</span></div>
+        <div class="rentry"><span class="ic"></span> Settings</div>
+        <div class="spacer"></div>
+        <div class="ruser"><span class="av">ME</span> <span>MmasiEjikeme</span></div>
+      </nav>
+      <section class="pane">
+        <div class="phead">
+          <div><h4>Edit photograph</h4>
+            <p class="psub">Golden Hour, Lekki · published 2 hours ago</p></div>
+          <div class="pacts">
+            <span class="btn">Cancel</span>
+            <span class="btn pri">Save photograph</span>
+          </div>
+        </div>
+        <div class="pcontent">
+          <div class="split">
+            <div class="card">
+              <h5>Details</h5>
+              <div class="g2">
+                <div>
+                  <span class="label">Category</span>
+                  <span class="fsel">Weddings</span>
+                </div>
+                <div>
+                  <span class="label">Year</span>
+                  <div class="input filled">2026</div>
+                </div>
+              </div>
+              <span class="label">Title</span>
+              <div class="input filled">Golden Hour, Lekki</div>
+              <span class="label">Image URL</span>
+              <div class="input filled">https://cdn.mmasiejikeme.studio/golden-hour-lekki.jpg</div>
+              <div class="g2">
+                <div>
+                  <span class="label">Camera body</span>
+                  <div class="input filled">Sony FX6</div>
+                </div>
+                <div>
+                  <span class="label">Prime lens</span>
+                  <div class="input filled">50mm f/1.2 GM</div>
+                </div>
+              </div>
+              <span class="label">Location</span>
+              <div class="input filled">Lekki Phase 1, Lagos</div>
+              <span class="label">Caption</span>
+              <div class="textarea">The last light off the lagoon, held one stop under
+                so the gold stays gold. Shot handheld, wide open, between the vows and
+                the first dance.</div>
+            </div>
+            <div class="card">
+              <h5>Live preview</h5>
+              <div class="cine">
+                <div class="thumb"><span class="plate warm"></span>
+                  <span class="res">Preview</span></div>
+                <div class="cbody">
+                  <span class="ctag">Weddings · 2026</span>
+                  <h4>Golden Hour, Lekki</h4>
+                  <p>Lekki Phase 1, Lagos · Sony FX6 · 50mm f/1.2</p>
+                </div>
+              </div>
+              <p class="hint">This is the card a visitor sees in the gallery and the
+                lightbox. It updates as you type.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div></div>
+    <p class="fnote">The preview is the same card the public gallery renders, so the
+      studio edits against the finished result rather than a form that looks right
+      and a site that does not. Category is a fixed list, not free text, because a
+      typo there drops a photograph out of its filter tab and the studio never sees
+      the gap.</p>
+  </figure>
+
+  <!-- =============================== adm-reels ============================ -->
+  <figure class="frame">
+    <figcaption>
+      <span class="sid">adm-reels</span>
+      <span class="snm">Reels &amp; films</span>
+      <span class="spu">/admin/reels — the motion library, vertical reels and widescreen cinema together</span>
+    </figcaption>
+    <div class="deskwrap"><div class="desk app">
+      <nav class="rail">
+        <div class="brand"><span class="mono-m">M</span> MmasiEjikeme</div>
+        <div class="rentry"><span class="ic"></span> Portfolio</div>
+        <div class="rentry on"><span class="ic"></span> Reels &amp; Films</div>
+        <div class="rentry"><span class="ic"></span> Inquiries <span class="count">3</span></div>
+        <div class="rentry"><span class="ic"></span> Settings</div>
+        <div class="spacer"></div>
+        <div class="ruser"><span class="av">ME</span> <span>MmasiEjikeme</span></div>
+      </nav>
+      <section class="pane">
+        <div class="phead">
+          <div><h4>Reels &amp; films</h4>
+            <p class="psub">12 reels · 7 cinema films</p></div>
+          <div class="pacts">
+            <span class="btn pri">Add reel</span>
+          </div>
+        </div>
+        <div class="pcontent">
+          <div class="fbar">
+            <span class="fsrch">Search title</span>
+            <span class="fsel">Format: All</span>
+            <span class="ftrail"><span class="fsel">Status: All</span></span>
+          </div>
+          <div class="tcard">
+            <table>
+              <thead><tr>
+                <th>Film</th><th>Format</th><th>Duration</th><th>Resolution</th>
+                <th>Status</th><th>Actions</th>
+              </tr></thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <span class="tthumb"><span class="plate portrait"></span></span>
+                    Vows at Dawn<span class="sub">Lekki · ceremony highlight</span>
+                  </td>
+                  <td><span class="badge">9:16 Reel</span></td>
+                  <td>0:38</td>
+                  <td>4K UHD</td>
+                  <td><span class="status is-ok">Published</span></td>
+                  <td><span class="btn wa sm"><span class="waglyph"></span> Share</span>
+                    <span class="btn sm">Edit</span></td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="tthumb"><span class="plate warm"></span></span>
+                    The Adeyemi Film<span class="sub">Documentary wedding film</span>
+                  </td>
+                  <td><span class="badge">16:9 Cinema</span></td>
+                  <td>6:12</td>
+                  <td>4K UHD</td>
+                  <td><span class="status is-ok">Published</span></td>
+                  <td><span class="btn wa sm"><span class="waglyph"></span> Share</span>
+                    <span class="btn sm">Edit</span></td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="tthumb"><span class="plate cool"></span></span>
+                    Lagos Fashion Week teaser<span class="sub">Brand teaser · unlisted</span>
+                  </td>
+                  <td><span class="badge">9:16 Reel</span></td>
+                  <td>0:22</td>
+                  <td>1080p HD</td>
+                  <td><span class="status is-idle">Draft</span></td>
+                  <td><span class="btn wa sm"><span class="waglyph"></span> Share</span>
+                    <span class="btn sm">Edit</span></td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="tthumb"><span class="plate"></span></span>
+                    Arla — brand campaign<span class="sub">Commercial film</span>
+                  </td>
+                  <td><span class="badge">16:9 Cinema</span></td>
+                  <td>2:40</td>
+                  <td>4K UHD</td>
+                  <td><span class="status is-ok">Published</span></td>
+                  <td><span class="btn wa sm"><span class="waglyph"></span> Share</span>
+                    <span class="btn sm">Edit</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div></div>
+    <p class="fnote">Reels and cinema films sit in one table because the studio
+      thinks of them as one body of motion work, and the format badge carries the
+      distinction the public site splits into two rows. Resolution is a column of
+      its own — a client asking for a 4K master is asking which of these files
+      exists.</p>
+  </figure>
+
+  <!-- ============================= adm-reel-edit ========================== -->
+  <figure class="frame">
+    <figcaption>
+      <span class="sid">adm-reel-edit</span>
+      <span class="snm">Add / edit reel</span>
+      <span class="spu">/admin/reels/vows-at-dawn — the format sets the preview aspect</span>
+    </figcaption>
+    <div class="deskwrap"><div class="desk app">
+      <nav class="rail">
+        <div class="brand"><span class="mono-m">M</span> MmasiEjikeme</div>
+        <div class="rentry"><span class="ic"></span> Portfolio</div>
+        <div class="rentry on"><span class="ic"></span> Reels &amp; Films</div>
+        <div class="rentry"><span class="ic"></span> Inquiries <span class="count">3</span></div>
+        <div class="rentry"><span class="ic"></span> Settings</div>
+        <div class="spacer"></div>
+        <div class="ruser"><span class="av">ME</span> <span>MmasiEjikeme</span></div>
+      </nav>
+      <section class="pane">
+        <div class="phead">
+          <div><h4>Add reel</h4>
+            <p class="psub">New motion piece</p></div>
+          <div class="pacts">
+            <span class="btn">Cancel</span>
+            <span class="btn pri">Save reel</span>
+          </div>
+        </div>
+        <div class="pcontent">
+          <div class="split">
+            <div class="card">
+              <h5>Details</h5>
+              <span class="label">Format</span>
+              <div class="seg">
+                <span class="on">9:16 Vertical</span>
+                <span>16:9 Widescreen</span>
+              </div>
+              <span class="label">Title</span>
+              <div class="input filled">Vows at Dawn</div>
+              <span class="label">Video URL</span>
+              <div class="input filled">https://cdn.mmasiejikeme.studio/vows-at-dawn.mp4</div>
+              <span class="label">Poster URL</span>
+              <div class="input filled">https://cdn.mmasiejikeme.studio/vows-at-dawn.jpg</div>
+              <div class="g2">
+                <div>
+                  <span class="label">Duration</span>
+                  <div class="input filled">0:38</div>
+                </div>
+                <div>
+                  <span class="label">Resolution</span>
+                  <div class="input filled">4K UHD</div>
+                </div>
+              </div>
+              <span class="label">Synopsis</span>
+              <div class="textarea" style="min-height:66px">First light on the lagoon, the couple alone before the guests arrive.</div>
+            </div>
+            <div class="card">
+              <h5>Live preview · 9:16</h5>
+              <div class="reel" style="width:188px">
+                <span class="plate portrait"></span>
+                <span class="dur">0:38</span>
+                <span class="rplay"></span>
+                <div class="rmeta"><b>Vows at Dawn</b><span>Lekki · 2026</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div></div>
+    <p class="fnote">The format segment sets the preview aspect — a 9:16 vertical
+      reel is drawn in the 9:16 card a phone audience will see, a 16:9 film in the
+      widescreen card. Choosing the format first means the studio uploads a poster
+      that fits rather than one cropped after the fact.</p>
+  </figure>
+
+  <!-- ============================== adm-share ============================= -->
+  <figure class="frame">
+    <figcaption>
+      <span class="sid">adm-share</span>
+      <span class="snm">Share this piece</span>
+      <span class="spu">/admin — the share dialog over the portfolio, WhatsApp and a copy link</span>
+    </figcaption>
+    <div class="deskwrap"><div class="desk app">
+      <nav class="rail">
+        <div class="brand"><span class="mono-m">M</span> MmasiEjikeme</div>
+        <div class="rentry on"><span class="ic"></span> Portfolio</div>
+        <div class="rentry"><span class="ic"></span> Reels &amp; Films</div>
+        <div class="rentry"><span class="ic"></span> Inquiries <span class="count">3</span></div>
+        <div class="rentry"><span class="ic"></span> Settings</div>
+        <div class="spacer"></div>
+        <div class="ruser"><span class="av">ME</span> <span>MmasiEjikeme</span></div>
+      </nav>
+      <section class="pane">
+        <div class="phead">
+          <div><h4>Portfolio</h4>
+            <p class="psub">58 photographs · 5 published today</p></div>
+          <div class="pacts">
+            <span class="btn pri">Add photograph</span>
+          </div>
+        </div>
+        <div class="pcontent">
+          <div class="fbar">
+            <span class="fsrch">Search title, location or caption</span>
+            <span class="fsel">Category: All</span>
+            <span class="ftrail"><span class="fsel">Status: All</span></span>
+          </div>
+          <div class="tcard">
+            <table>
+              <thead><tr>
+                <th>Photograph</th><th>Category</th><th>Capture</th>
+                <th>Status</th><th>Actions</th>
+              </tr></thead>
+              <tbody>
+                <tr class="sel">
+                  <td>
+                    <span class="tthumb"><span class="plate warm"></span></span>
+                    Golden Hour, Lekki<span class="sub">Lekki Phase 1, Lagos</span>
+                  </td>
+                  <td><span class="chip">Weddings</span></td>
+                  <td>Sony FX6 · 50mm f/1.2 · 2026</td>
+                  <td><span class="status is-ok">Published</span></td>
+                  <td><span class="btn wa sm"><span class="waglyph"></span> Share</span>
+                    <span class="btn sm">Edit</span></td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="tthumb"><span class="plate portrait"></span></span>
+                    Aso-Oke, Unworn<span class="sub">Surulere, Lagos</span>
+                  </td>
+                  <td><span class="chip">Fashion &amp; Editorial</span></td>
+                  <td>Fujifilm GFX 100 · 110mm · 2025</td>
+                  <td><span class="status is-ok">Published</span></td>
+                  <td><span class="btn wa sm"><span class="waglyph"></span> Share</span>
+                    <span class="btn sm">Edit</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <div class="scrim">
+        <div class="dialog">
+          <div class="dhead">
+            <h3>Share "Golden Hour, Lekki"</h3>
+            <p>Send the piece straight to a client, or copy a link that opens this
+              exact photograph with the studio navigation still in reach.</p>
+          </div>
+          <div class="dbody">
+            <span class="btn wa block"><span class="waglyph"></span> Send on WhatsApp</span>
+            <div class="copyrow">
+              <span class="url">https://mmasiejikeme.studio/work/golden-hour-lekki</span>
+              <span class="cbtn">Copy</span>
+            </div>
+            <span class="copied">Link copied</span>
+          </div>
+          <div class="dfoot">
+            <span class="btn">Close</span>
+          </div>
+        </div>
+      </div>
+    </div></div>
+    <p class="fnote">The dialog opens over the portfolio, not on a page of its own,
+      so the studio shares without losing its place in the table. The WhatsApp
+      action is the primary one because a shared link is how a conversation with a
+      bride or a brand manager begins; the copy link is the quieter path, and its
+      confirmation says the link is on the clipboard so nobody shares an empty
+      paste.</p>
+  </figure>
+
+  <!-- ========================= adm-portfolio-empty ======================== -->
+  <figure class="frame">
+    <figcaption>
+      <span class="sid">adm-portfolio-empty</span>
+      <span class="snm">Portfolio — empty</span>
+      <span class="spu">/admin — day one, before a single photograph is uploaded</span>
+    </figcaption>
+    <div class="deskwrap"><div class="desk app">
+      <nav class="rail">
+        <div class="brand"><span class="mono-m">M</span> MmasiEjikeme</div>
+        <div class="rentry on"><span class="ic"></span> Portfolio</div>
+        <div class="rentry"><span class="ic"></span> Reels &amp; Films</div>
+        <div class="rentry"><span class="ic"></span> Inquiries</div>
+        <div class="rentry"><span class="ic"></span> Settings</div>
+        <div class="spacer"></div>
+        <div class="ruser"><span class="av">ME</span> <span>MmasiEjikeme</span></div>
+      </nav>
+      <section class="pane">
+        <div class="phead">
+          <div><h4>Portfolio</h4>
+            <p class="psub">Nothing published yet</p></div>
+          <div class="pacts">
+            <span class="btn pri">Add photograph</span>
+          </div>
+        </div>
+        <div class="pcontent">
+          <div class="empty">
+            <span class="eglyph"></span>
+            <span class="etitle">No photographs yet</span>
+            <p>Add your first photograph and it appears in the public gallery under
+              its category, ready to share with a client.</p>
+            <span class="btn pri ebtn">Add your first photograph</span>
+          </div>
+        </div>
+      </section>
+    </div></div>
+    <p class="fnote">An empty state that only says "no data" costs the studio its
+      first upload. This one names the one action that fills the screen and tells
+      the studio what happens after — the photograph goes live under its category —
+      so day one is a single button, not a blank table. This is the ease check: the
+      empty state carries a <code>.btn</code>.</p>
+  </figure>
+
+</div>
+
+<h2 class="surface">Inquiries</h2>
+<p class="sub">The conversations the public site routes in from WhatsApp: the list
+   the studio triages, and one inquiry opened to its full detail — including one a
+   client sent with no project vision written.</p>
+
+<div class="sheet desks">
+
+  <!-- ============================= adm-inquiries ========================== -->
+  <figure class="frame">
+    <figcaption>
+      <span class="sid">adm-inquiries</span>
+      <span class="snm">Inquiries</span>
+      <span class="spu">/admin/inquiries — every inquiry, its status a word and a colour</span>
+    </figcaption>
+    <div class="deskwrap"><div class="desk app">
+      <nav class="rail">
+        <div class="brand"><span class="mono-m">M</span> MmasiEjikeme</div>
+        <div class="rentry"><span class="ic"></span> Portfolio</div>
+        <div class="rentry"><span class="ic"></span> Reels &amp; Films</div>
+        <div class="rentry on"><span class="ic"></span> Inquiries <span class="count">3</span></div>
+        <div class="rentry"><span class="ic"></span> Settings</div>
+        <div class="spacer"></div>
+        <div class="ruser"><span class="av">ME</span> <span>MmasiEjikeme</span></div>
+      </nav>
+      <section class="pane">
+        <div class="phead">
+          <div><h4>Inquiries</h4>
+            <p class="psub">41 inquiries · 3 new this week</p></div>
+          <div class="pacts">
+            <span class="fsel">Status: All</span>
+          </div>
+        </div>
+        <div class="pcontent">
+          <div class="fbar">
+            <span class="fsrch">Search name, phone or service</span>
+            <span class="fsel">Service: All</span>
+            <span class="ftrail"><span class="fsel">Last 30 days</span></span>
+          </div>
+          <div class="tcard">
+            <table>
+              <thead><tr>
+                <th>Client</th><th>Service</th><th>Proposed date</th>
+                <th>Location</th><th>Status</th><th>Actions</th>
+              </tr></thead>
+              <tbody>
+                <tr class="sel">
+                  <td>Chidinma Okeke<span class="sub">0803 221 7788</span></td>
+                  <td>Wedding Stills &amp; Film</td>
+                  <td>14 Feb 2026</td>
+                  <td>Eko Hotel, VI</td>
+                  <td><span class="status is-info">New</span></td>
+                  <td><span class="btn wa sm"><span class="waglyph"></span> Reply on WhatsApp</span></td>
+                </tr>
+                <tr>
+                  <td>Tunde &amp; Bisi<span class="sub">0701 556 9021</span></td>
+                  <td>Editorial Portraits</td>
+                  <td>3 Mar 2026</td>
+                  <td>Studio, Lagos</td>
+                  <td><span class="status is-warn">Under review</span></td>
+                  <td><span class="btn sm">Open</span></td>
+                </tr>
+                <tr>
+                  <td>Arla Foods<span class="sub">0815 774 2210</span></td>
+                  <td>Brand Campaign</td>
+                  <td>20 Jan 2026</td>
+                  <td>Lekki</td>
+                  <td><span class="status is-ok">Booked</span></td>
+                  <td><span class="btn sm">Open</span></td>
+                </tr>
+                <tr>
+                  <td>Emeka Nwachukwu<span class="sub">0906 778 2214</span></td>
+                  <td>Short-Form Content</td>
+                  <td>Flexible</td>
+                  <td>Abuja</td>
+                  <td><span class="status is-info">New</span></td>
+                  <td><span class="btn sm">Open</span></td>
+                </tr>
+                <tr>
+                  <td>Ngozi Ade<span class="sub">0802 118 4409</span></td>
+                  <td>Fashion &amp; Editorial</td>
+                  <td>9 Dec 2025</td>
+                  <td>Surulere</td>
+                  <td><span class="status is-idle">Completed</span></td>
+                  <td><span class="btn sm">Open</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div></div>
+    <p class="fnote">Every inquiry status carries its word and its colour together —
+      New, Under review, Booked, Completed — so the studio never reads a colour it
+      has to remember the meaning of. The selected row can reply on WhatsApp without
+      opening the inquiry, because a new inquiry is a warm conversation that should
+      start in one tap, not a record to process.</p>
+  </figure>
+
+  <!-- ========================== adm-inquiry-detail ======================== -->
+  <figure class="frame">
+    <figcaption>
+      <span class="sid">adm-inquiry-detail</span>
+      <span class="snm">Inquiry detail</span>
+      <span class="spu">/admin/inquiries/emeka-nwachukwu — the full inquiry, vision left blank</span>
+    </figcaption>
+    <div class="deskwrap"><div class="desk app">
+      <nav class="rail">
+        <div class="brand"><span class="mono-m">M</span> MmasiEjikeme</div>
+        <div class="rentry"><span class="ic"></span> Portfolio</div>
+        <div class="rentry"><span class="ic"></span> Reels &amp; Films</div>
+        <div class="rentry on"><span class="ic"></span> Inquiries <span class="count">3</span></div>
+        <div class="rentry"><span class="ic"></span> Settings</div>
+        <div class="spacer"></div>
+        <div class="ruser"><span class="av">ME</span> <span>MmasiEjikeme</span></div>
+      </nav>
+      <section class="pane">
+        <div class="phead">
+          <div><h4>Emeka Nwachukwu</h4>
+            <p class="psub">Short-Form Content · received today 08:14</p></div>
+          <div class="pacts">
+            <span class="status is-info">New</span>
+          </div>
+        </div>
+        <div class="pcontent">
+          <div class="split">
+            <div class="card">
+              <h5>The inquiry</h5>
+              <span class="label">Contact</span>
+              <div class="input filled">Emeka Nwachukwu · 0906 778 2214</div>
+              <span class="label">Requested service</span>
+              <div class="input filled">Short-Form Content</div>
+              <div class="g2">
+                <div>
+                  <span class="label">Proposed dates</span>
+                  <div class="input filled">Flexible</div>
+                </div>
+                <div>
+                  <span class="label">Location</span>
+                  <div class="input filled">Abuja</div>
+                </div>
+              </div>
+              <span class="label">Project vision</span>
+              <p class="hint">No project vision provided.</p>
+            </div>
+            <div class="card">
+              <h5>Move this inquiry</h5>
+              <div class="seg">
+                <span class="on">New</span>
+                <span>Under review</span>
+                <span>Booked</span>
+                <span>Completed</span>
+              </div>
+              <span class="btn wa block"><span class="waglyph"></span> Reply on WhatsApp</span>
+              <p class="hint">Received today 08:14 from the Contact page builder.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div></div>
+    <p class="fnote">An inquiry with no vision written is the common case, not the
+      exception — a client taps "Book on WhatsApp" and fills only the fields they
+      feel sure of. The blank vision reads as "No project vision provided", a muted
+      line and not an empty box, so the studio knows the field was skipped rather
+      than lost, and opens the conversation on WhatsApp to draw out the rest.</p>
+  </figure>
+
+</div>
+
+<h2 class="surface">Settings</h2>
+<p class="sub">The studio profile the public site reads back: the WhatsApp number
+   every booking button opens, the display coordinates, and the social channels.</p>
+
+<div class="sheet desks">
+
+  <!-- ============================= adm-settings =========================== -->
+  <figure class="frame">
+    <figcaption>
+      <span class="sid">adm-settings</span>
+      <span class="snm">Studio profile</span>
+      <span class="spu">/admin/settings — contact, location and the social channels the site reads</span>
+    </figcaption>
+    <div class="deskwrap"><div class="desk app">
+      <nav class="rail">
+        <div class="brand"><span class="mono-m">M</span> MmasiEjikeme</div>
+        <div class="rentry"><span class="ic"></span> Portfolio</div>
+        <div class="rentry"><span class="ic"></span> Reels &amp; Films</div>
+        <div class="rentry"><span class="ic"></span> Inquiries <span class="count">3</span></div>
+        <div class="rentry on"><span class="ic"></span> Settings</div>
+        <div class="spacer"></div>
+        <div class="ruser"><span class="av">ME</span> <span>MmasiEjikeme</span></div>
+      </nav>
+      <section class="pane">
+        <div class="phead">
+          <div><h4>Studio profile</h4>
+            <p class="psub">What the public site reads back as its contact details</p></div>
+          <div class="pacts">
+            <span class="btn pri">Save profile</span>
+          </div>
+        </div>
+        <div class="pcontent">
+          <div class="card">
+            <h5>Contact</h5>
+            <div class="g3">
+              <div>
+                <span class="label">WhatsApp number</span>
+                <div class="input filled">+2348147099175</div>
+              </div>
+              <div>
+                <span class="label">Display phone</span>
+                <div class="input filled">+234 814 709 9175</div>
+              </div>
+              <div>
+                <span class="label">Official email</span>
+                <div class="input filled">studio@mmasiejikeme.studio</div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <h5>Base &amp; reach</h5>
+            <div class="g2">
+              <div>
+                <span class="label">Physical location</span>
+                <div class="input filled">Lagos, Nigeria</div>
+              </div>
+              <div>
+                <span class="label">Availability</span>
+                <div class="input filled">Worldwide — on location</div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <h5>Social channels</h5>
+            <div class="g4">
+              <div>
+                <span class="label">Instagram</span>
+                <div class="input filled">@mmasiejikeme</div>
+              </div>
+              <div>
+                <span class="label">TikTok</span>
+                <div class="input filled">@mmasiejikeme</div>
+              </div>
+              <div>
+                <span class="label">X</span>
+                <div class="input filled">@mmasiejikeme</div>
+              </div>
+              <div>
+                <span class="label">Facebook</span>
+                <div class="input filled">MmasiEjikeme Studios</div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="fbar">
+              <span class="label">Show 24-hour response guarantee on the Contact page</span>
+              <span class="ftrail"><span class="toggle on"></span></span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div></div>
+    <p class="fnote">The WhatsApp number is stored twice on purpose — once as the
+      dialling string every booking button opens (<code>+2348147099175</code>) and
+      once as the display string a visitor reads (<code>+234 814 709 9175</code>) —
+      because the two are not the same text and the site needs both. Turning off the
+      24-hour guarantee removes the promise from the public Contact page rather than
+      leaving a claim the studio stops honouring in a busy season.</p>
+  </figure>
+
+</div>
+
+</div>
+</body>
+</html>

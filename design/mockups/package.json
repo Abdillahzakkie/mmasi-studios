@@ -1,0 +1,17 @@
+{
+  "name": "mmasi-mockups",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Contact sheets for MmasiEjikeme Studios — every screen drawn before it is built.",
+  "scripts": {
+    "manifest": "node build-manifest.mjs",
+    "render": "node render-sheets.mjs",
+    "check:overflow": "node check-overflow.mjs",
+    "check:ease": "node check-ease.mjs",
+    "check": "node check-overflow.mjs && node check-ease.mjs && node build-manifest.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.60.0"
+  }
+}
