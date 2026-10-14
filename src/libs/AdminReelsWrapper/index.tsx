@@ -237,7 +237,11 @@ function ReelForm({ row, onDone }: { row: MotionRow | null; onDone: () => void }
 									if (f) onFile(f, "poster");
 								}}
 							/>
-							<Button variant="outline" size="sm" onClick={() => setPicking("poster")}>
+							<Button
+								variant="outline"
+								size="sm"
+								onClick={() => setPicking("poster")}
+							>
 								Choose from library
 							</Button>
 							{uploading === "poster" && <Muted>Uploading poster…</Muted>}
