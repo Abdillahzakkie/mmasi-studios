@@ -617,7 +617,25 @@ function TeamForm({
 function TeamTab({ tab, setTab }: TabProps) {
 	const { data: users, isLoading, mutate } = useSWR<ApiUser[]>("/api/admin/iam/users", fetcher);
 	const { data: groups } = useSWR<ApiGroup[]>("/api/admin/iam/groups", fetcher);
+	const { data: me } = useSWR<{ email: string }>("/api/auth/me", fetcher);
 	const [editing, setEditing] = useState<ApiUser | "new" | null>(null);
+	const [err, setErr] = useState("");
+
+	const remove = async (u: ApiUser) => {
+		if (
+			!window.confirm(
+				`Delete ${u.name || u.email}? This removes their sign-in and passkeys, and can't be undone.`,
+			)
+		)
+			return;
+		setErr("");
+		try {
+			await send(`/api/admin/iam/users/${u.id}`, "DELETE");
+			mutate();
+		} catch (e) {
+			setErr((e as Error).message);
+		}
+	};
 
 	if (editing) {
 		return (
@@ -651,6 +669,7 @@ function TeamTab({ tab, setTab }: TabProps) {
 			<TabBar>
 				<IamTabs tab={tab} setTab={setTab} />
 			</TabBar>
+			{err && <Muted style={{ color: "var(--mm-danger)", marginBottom: 10 }}>{err}</Muted>}
 			{isLoading ? (
 				<Muted>Loading team…</Muted>
 			) : (
@@ -696,6 +715,15 @@ function TeamTab({ tab, setTab }: TabProps) {
 											>
 												Edit
 											</Button>
+											{u.email !== me?.email && (
+												<Button
+													variant="ghost"
+													size="sm"
+													onClick={() => remove(u)}
+												>
+													Delete
+												</Button>
+											)}
 										</div>
 									</td>
 								</tr>
