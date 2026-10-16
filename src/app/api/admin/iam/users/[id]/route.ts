@@ -8,7 +8,7 @@ import {
 	publicUser,
 	requirePermission,
 } from "@/server/iam";
-import { AdminUser, Group } from "@/server/models";
+import { AdminUser, Group, Passkey } from "@/server/models";
 
 type Params = { params: Promise<{ id: string }> };
 
@@ -101,5 +101,6 @@ export async function DELETE(_req: Request, ctx: Params) {
 	}
 	await target.deleteOne();
 	await Group.updateMany({ members: id }, { $pull: { members: id } });
+	await Passkey.deleteMany({ userId: id });
 	return NextResponse.json({ ok: true });
 }
