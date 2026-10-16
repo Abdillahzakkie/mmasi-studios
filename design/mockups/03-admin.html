@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MmasiEjikeme Studios — Studio admin contact sheet (10 frames, web only)</title>
+<title>MmasiEjikeme Studios — Studio admin contact sheet (13 frames, web only)</title>
 <link rel="stylesheet" href="system.css">
 </head>
 <body>
@@ -11,9 +11,10 @@
 
 <header class="doc">
   <h1>MmasiEjikeme Studios — Studio admin contact sheet</h1>
-  <p>Ten frames of the studio admin: the fixed app shell MmasiEjikeme signs into
-     to keep the portfolio current, read the inquiries the public site routes in,
-     and share any photograph or reel with a client. Every frame is drawn at
+  <p>Thirteen frames of the studio admin: the fixed app shell the studio signs
+     into to keep the portfolio current, read the inquiries the public site routes
+     in, manage who on the team can touch what, and share any photograph or reel
+     with a client. Every frame is drawn at
      1440 × 900 in the editorial light theme — the admin never carries the
      cinematic dark — laid out as a 236px rail beside a pane.</p>
   <p>The admin exists so the work stays current without a developer. A new
@@ -34,8 +35,9 @@
 </header>
 
 <h2 class="surface">Access</h2>
-<p class="sub">One shared studio sign-in. The whole team works from a single
-   account, so the card names the studio, not a person.</p>
+<p class="sub">Who gets into the studio admin, and what each person can touch. A
+   teammate is invited, placed in a group, and the group's permission sets decide
+   — in plain words, never a policy to write — what they can see and change.</p>
 
 <div class="sheet desks">
 
@@ -60,8 +62,10 @@
             <div class="input">••••••••••••</div>
           </div>
           <span class="btn pri block">Sign in to the studio</span>
-          <p class="hint">One account for the whole studio. Every change — a new
-            photograph, a booked inquiry — is made from here.</p>
+          <span class="btn outline block">Sign in with a passkey</span>
+          <p class="hint">A passkey signs you in with your fingerprint, face or
+            device PIN — no password to type. Add one from Settings after you sign
+            in; email and password keep working either way.</p>
         </div>
       </div>
     </div></div>
@@ -69,6 +73,238 @@
       because the portfolio, the reels and the inquiries belong to the studio,
       not to whoever is at the desk. A single card keeps the first screen quiet:
       the work is behind it, and the editorial light carries through.</p>
+  </figure>
+
+  <!-- ============================== adm-team ============================== -->
+  <figure class="frame">
+    <figcaption>
+      <span class="sid">adm-team</span>
+      <span class="snm">Team</span>
+      <span class="spu">/admin/access — the people who can sign in, and the group that sets what each may touch</span>
+    </figcaption>
+    <div class="deskwrap"><div class="desk app">
+      <nav class="rail">
+        <div class="brand"><span class="mono-m">M</span> MmasiEjikeme</div>
+        <div class="rentry"><span class="ic"></span> Portfolio</div>
+        <div class="rentry"><span class="ic"></span> Reels &amp; Films</div>
+        <div class="rentry"><span class="ic"></span> Case studies</div>
+        <div class="rentry"><span class="ic"></span> Services</div>
+        <div class="rentry"><span class="ic"></span> Page content</div>
+        <div class="rentry"><span class="ic"></span> Media</div>
+        <div class="rentry"><span class="ic"></span> Inquiries <span class="count">3</span></div>
+        <div class="rentry"><span class="ic"></span> Settings</div>
+        <div class="rentry on"><span class="ic"></span> Access &amp; team</div>
+        <div class="spacer"></div>
+        <div class="ruser"><span class="av">ME</span> <span>MmasiEjikeme</span></div>
+      </nav>
+      <section class="pane">
+        <div class="phead">
+          <div><h4>Access &amp; team</h4>
+            <p class="psub">3 people can sign in · groups decide what each can touch</p></div>
+          <div class="pacts"><span class="btn pri">Invite teammate</span></div>
+        </div>
+        <div class="pcontent">
+          <div class="seg" style="margin-bottom:16px">
+            <span class="on">Team</span><span>Groups</span><span>Permission sets</span>
+          </div>
+          <div class="tcard">
+            <table>
+              <thead><tr>
+                <th>Teammate</th><th>Group</th><th>What they can do</th>
+                <th>Status</th><th>Actions</th>
+              </tr></thead>
+              <tbody>
+                <tr>
+                  <td><div class="who" style="display:flex;align-items:center;gap:10px">
+                    <span class="lav" style="width:30px;height:30px;border-radius:50%;background:var(--surface-2);border:1px solid var(--line);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700">ME</span>
+                    <div><b>MmasiEjikeme</b><br><span class="psub">hello@mmasiejikeme.studio</span></div></div></td>
+                  <td><span class="chip">Owners</span></td>
+                  <td>Everything</td>
+                  <td><span class="status is-ok">Active</span></td>
+                  <td><span class="btn outline sm">Edit</span></td>
+                </tr>
+                <tr>
+                  <td><div class="who" style="display:flex;align-items:center;gap:10px">
+                    <span class="lav" style="width:30px;height:30px;border-radius:50%;background:var(--surface-2);border:1px solid var(--line);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700">AO</span>
+                    <div><b>Ada Okoye</b><br><span class="psub">ada@mmasiejikeme.studio</span></div></div></td>
+                  <td><span class="chip">Editors</span></td>
+                  <td>Edit the work &amp; pages, read inquiries</td>
+                  <td><span class="status is-ok">Active</span></td>
+                  <td><span class="btn outline sm">Edit</span> <span class="btn ghost sm">Disable</span></td>
+                </tr>
+                <tr>
+                  <td><div class="who" style="display:flex;align-items:center;gap:10px">
+                    <span class="lav" style="width:30px;height:30px;border-radius:50%;background:var(--surface-2);border:1px solid var(--line);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700">TU</span>
+                    <div><b>Tunde Umeh</b><br><span class="psub">tunde@mmasiejikeme.studio</span></div></div></td>
+                  <td><span class="chip">Viewers</span></td>
+                  <td>Look, don't change</td>
+                  <td><span class="status is-idle">Disabled</span></td>
+                  <td><span class="btn outline sm">Edit</span> <span class="btn ghost sm">Enable</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div></div>
+    <p class="fnote">The admin is no longer one shared login. A teammate is a real
+      person with their own sign-in, placed in a group. The row says what they can
+      do in a sentence, not a role code — "Edit the work &amp; pages, read
+      inquiries" — so the studio owner grants access without reading a policy.</p>
+  </figure>
+
+  <!-- =========================== adm-permissions ========================== -->
+  <figure class="frame">
+    <figcaption>
+      <span class="sid">adm-permissions</span>
+      <span class="snm">Permission set</span>
+      <span class="spu">/admin/access — Off / View / Manage per thing the studio owns; no policy to write</span>
+    </figcaption>
+    <div class="deskwrap"><div class="desk app">
+      <nav class="rail">
+        <div class="brand"><span class="mono-m">M</span> MmasiEjikeme</div>
+        <div class="rentry"><span class="ic"></span> Portfolio</div>
+        <div class="rentry"><span class="ic"></span> Reels &amp; Films</div>
+        <div class="rentry"><span class="ic"></span> Case studies</div>
+        <div class="rentry"><span class="ic"></span> Services</div>
+        <div class="rentry"><span class="ic"></span> Page content</div>
+        <div class="rentry"><span class="ic"></span> Media</div>
+        <div class="rentry"><span class="ic"></span> Inquiries <span class="count">3</span></div>
+        <div class="rentry"><span class="ic"></span> Settings</div>
+        <div class="rentry on"><span class="ic"></span> Access &amp; team</div>
+        <div class="spacer"></div>
+        <div class="ruser"><span class="av">ME</span> <span>MmasiEjikeme</span></div>
+      </nav>
+      <section class="pane">
+        <div class="phead">
+          <div><h4>Permission set · Editor</h4>
+            <p class="psub">Choose what this set can do — in plain words</p></div>
+          <div class="pacts"><span class="btn outline">Cancel</span>
+            <span class="btn pri">Save permission set</span></div>
+        </div>
+        <div class="pcontent">
+          <div class="card" style="margin-bottom:14px">
+            <div class="formgrid">
+              <div><span class="label">Name</span><div class="input filled">Editor</div></div>
+              <div><span class="label">What it's for</span>
+                <div class="input filled">Can edit the work and the page copy, but not settings or access</div></div>
+            </div>
+          </div>
+          <div class="card">
+            <h5>What can this set touch?</h5>
+            <div class="permlist">
+              <div class="permrow"><div><div class="pname">Portfolio</div>
+                <div class="pdesc">Photographs on the public gallery</div></div>
+                <div class="seg lv"><span>Off</span><span>View</span><span class="on full">Manage</span></div></div>
+              <div class="permrow"><div><div class="pname">Reels &amp; Films</div>
+                <div class="pdesc">Motion work</div></div>
+                <div class="seg lv"><span>Off</span><span>View</span><span class="on full">Manage</span></div></div>
+              <div class="permrow"><div><div class="pname">Case studies</div>
+                <div class="pdesc">Project stories on /work</div></div>
+                <div class="seg lv"><span>Off</span><span>View</span><span class="on full">Manage</span></div></div>
+              <div class="permrow"><div><div class="pname">Services</div>
+                <div class="pdesc">Tiers &amp; pricing</div></div>
+                <div class="seg lv"><span>Off</span><span>View</span><span class="on full">Manage</span></div></div>
+              <div class="permrow"><div><div class="pname">Page content</div>
+                <div class="pdesc">Headings &amp; copy across the site</div></div>
+                <div class="seg lv"><span>Off</span><span>View</span><span class="on full">Manage</span></div></div>
+              <div class="permrow"><div><div class="pname">Media library</div>
+                <div class="pdesc">Uploaded photos &amp; video</div></div>
+                <div class="seg lv"><span>Off</span><span>View</span><span class="on full">Manage</span></div></div>
+              <div class="permrow"><div><div class="pname">Inquiries</div>
+                <div class="pdesc">Booking requests from the contact page</div></div>
+                <div class="seg lv"><span>Off</span><span class="on read">View</span><span>Manage</span></div></div>
+              <div class="permrow"><div><div class="pname">Settings</div>
+                <div class="pdesc">Studio profile &amp; contact details</div></div>
+                <div class="seg lv"><span class="on">Off</span><span>View</span><span>Manage</span></div></div>
+              <div class="permrow"><div><div class="pname">Access &amp; team</div>
+                <div class="pdesc">Who can sign in and what they can do</div></div>
+                <div class="seg lv"><span class="on">Off</span><span>View</span><span>Manage</span></div></div>
+            </div>
+            <details style="margin-top:14px">
+              <summary class="hint" style="cursor:pointer">Advanced — show as a document</summary>
+              <div class="textarea" style="margin-top:8px;font-family:var(--mono)">{
+  "portfolio": "full", "reels": "full", "films": "full",
+  "casestudies": "full", "services": "full", "content": "full",
+  "media": "full", "inquiries": "read"
+}</div>
+            </details>
+          </div>
+        </div>
+      </section>
+    </div></div>
+    <p class="fnote">The centre of the whole feature. A non-technical owner never
+      writes a policy: each thing the studio owns is one choice — <strong>Off</strong>,
+      <strong>View</strong> or <strong>Manage</strong> — and Manage is the gold one,
+      so the eye reads the grant at a glance. The document under <em>Advanced</em>
+      is the same choice compiled, there for anyone who wants it and ignorable by
+      everyone who doesn't.</p>
+  </figure>
+
+  <!-- ============================= adm-groups ============================= -->
+  <figure class="frame">
+    <figcaption>
+      <span class="sid">adm-groups</span>
+      <span class="snm">Groups</span>
+      <span class="spu">/admin/access — a group bundles permission sets and the people who get them</span>
+    </figcaption>
+    <div class="deskwrap"><div class="desk app">
+      <nav class="rail">
+        <div class="brand"><span class="mono-m">M</span> MmasiEjikeme</div>
+        <div class="rentry"><span class="ic"></span> Portfolio</div>
+        <div class="rentry"><span class="ic"></span> Reels &amp; Films</div>
+        <div class="rentry"><span class="ic"></span> Case studies</div>
+        <div class="rentry"><span class="ic"></span> Services</div>
+        <div class="rentry"><span class="ic"></span> Page content</div>
+        <div class="rentry"><span class="ic"></span> Media</div>
+        <div class="rentry"><span class="ic"></span> Inquiries <span class="count">3</span></div>
+        <div class="rentry"><span class="ic"></span> Settings</div>
+        <div class="rentry on"><span class="ic"></span> Access &amp; team</div>
+        <div class="spacer"></div>
+        <div class="ruser"><span class="av">ME</span> <span>MmasiEjikeme</span></div>
+      </nav>
+      <section class="pane">
+        <div class="phead">
+          <div><h4>Access &amp; team</h4>
+            <p class="psub">Groups — a role for a kind of teammate</p></div>
+          <div class="pacts"><span class="btn pri">New group</span></div>
+        </div>
+        <div class="pcontent">
+          <div class="seg" style="margin-bottom:16px">
+            <span>Team</span><span class="on">Groups</span><span>Permission sets</span>
+          </div>
+          <div class="card" style="margin-bottom:14px">
+            <div class="phead" style="padding:0;border:none;margin-bottom:12px">
+              <div><h5 style="margin:0">Owners <span class="badge">built in</span></h5>
+                <p class="psub">Full access to everything, including access &amp; team</p></div>
+              <div class="pacts"><span class="btn outline sm">Add member</span></div>
+            </div>
+            <div class="listrow"><div class="who">
+              <span class="lav">ME</span><div class="meta"><b>MmasiEjikeme</b><span>hello@mmasiejikeme.studio</span></div></div>
+              <span class="status is-ok">Active</span></div>
+          </div>
+          <div class="card">
+            <div class="phead" style="padding:0;border:none;margin-bottom:12px">
+              <div><h5 style="margin:0">Editors <span class="badge">custom</span></h5>
+                <p class="psub">Permission sets: <span class="chip">Editor</span></p></div>
+              <div class="pacts"><span class="btn outline sm">Add member</span>
+                <span class="btn ghost sm">Edit</span></div>
+            </div>
+            <div class="listrow"><div class="who">
+              <span class="lav">AO</span><div class="meta"><b>Ada Okoye</b><span>ada@mmasiejikeme.studio</span></div></div>
+              <span class="btn ghost sm">Remove</span></div>
+            <div class="listrow"><div class="who">
+              <span class="lav">KN</span><div class="meta"><b>Kemi Nwosu</b><span>kemi@mmasiejikeme.studio</span></div></div>
+              <span class="btn ghost sm">Remove</span></div>
+          </div>
+        </div>
+      </section>
+    </div></div>
+    <p class="fnote">A group is the role, named for the kind of person it fits —
+      Owners, Editors, Viewers. It carries the permission sets as chips and lists
+      its people as rows, so granting a new hire the right access is one action:
+      add them to Editors. <strong>Owners</strong> is built in and always keeps at
+      least one active member, so the studio can never lock itself out.</p>
   </figure>
 
 </div>
@@ -843,6 +1079,17 @@
               <span class="label">Show 24-hour response guarantee on the Contact page</span>
               <span class="ftrail"><span class="toggle on"></span></span>
             </div>
+          </div>
+          <div class="card">
+            <h5>Your sign-in · passkeys</h5>
+            <p class="hint" style="margin:-4px 0 12px">Sign in with your fingerprint,
+               face or device PIN instead of a password. Add one per device; email
+               and password still work.</p>
+            <div class="listrow"><div class="who">
+              <span class="lav">PK</span>
+              <div class="meta"><b>This MacBook</b><span>Added 14 Oct 2026</span></div></div>
+              <span class="btn ghost sm">Remove</span></div>
+            <div style="margin-top:12px"><span class="btn outline sm">Add a passkey</span></div>
           </div>
         </div>
       </section>

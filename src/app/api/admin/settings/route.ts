@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
-import { clean, guard } from "@/app/api/_lib/api";
+import { clean, permit } from "@/app/api/_lib/api";
 import { connectDB } from "@/server/db";
 import { Setting } from "@/server/models";
 
 export async function GET() {
-	const denied = await guard();
+	const denied = await permit("settings", "read");
 	if (denied) return denied;
 	await connectDB();
 	const doc = await Setting.findOne({ key: "studio" }).lean();
@@ -12,7 +12,7 @@ export async function GET() {
 }
 
 export async function PUT(req: Request) {
-	const denied = await guard();
+	const denied = await permit("settings", "full");
 	if (denied) return denied;
 	await connectDB();
 	const body = await req.json();

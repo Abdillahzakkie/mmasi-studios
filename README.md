@@ -53,6 +53,26 @@ npm run ts.check   # tsc --noEmit
   `/admin/*` to `/signin`; admin API routes also check the session. The seeded
   account comes from `ADMIN_EMAIL` / `ADMIN_PASSWORD` (default
   `hello@mmasiejikeme.studio` / `studio-admin` — change it).
+- **Passkeys (WebAuthn):** teammates can add passkeys for passwordless sign-in
+  from **Settings**, alongside email and password (additive — the password keeps
+  working). Server logic is in `src/server/webauthn.ts` with routes under
+  `src/app/api/auth/passkey`; credentials are stored in the `Passkey` model.
+  Sign-in is discoverable (usernameless). In production, set `WEBAUTHN_RP_ID`
+  (the registrable domain) and `WEBAUTHN_ORIGIN` (the full scheme and host); the
+  `localhost` / `http://localhost:3000` defaults work for local development.
+- **Access control (roles/permissions):** each teammate has their own sign-in and
+  belongs to groups; a group carries permission sets that grant, per admin section
+  (`portfolio`, `reels`, `films`, `casestudies`, `services`, `content`, `media`,
+  `inquiries`, `settings`, `iam`), one of **off / read / full**. The model is a
+  flat `resource → level` map (no AWS-style policy engine) — vocabulary and pure
+  helpers in `@/constants/iam`, server enforcement in `@/server/iam`. Admin API
+  routes gate on `permit(resource, need)` (`read` for GET, `full` for writes), and
+  the sidebar hides sections a teammate can't open. Managed from **Access & team**
+  (`/admin/access`): the friendly builder sets each section to Off / View / Manage
+  in plain words — no policy to write — with an Advanced JSON view. Seeded system
+  roles: **Owner** (everything), **Editor** (content and media, read inquiries),
+  **Viewer** (read-only). The seeded admin is an Owner; the last active Owner can
+  never be removed or locked out.
 - **Media storage:** pluggable behind `src/server/storage/` — a `StorageProvider`
   interface with two implementations, `s3` (S3/MinIO) and `imagekit`
   ([ImageKit](https://imagekit.io/)), chosen by the `STORAGE_PROVIDER` env var

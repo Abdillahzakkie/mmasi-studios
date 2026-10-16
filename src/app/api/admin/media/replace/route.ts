@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
-import { guard } from "@/app/api/_lib/api";
+import { permit } from "@/app/api/_lib/api";
 import { uploadObject } from "@/server/storage";
 
 // Overwrites the object at an existing key with a new file, keeping the key
 // (and therefore every reference URL) unchanged.
 export async function POST(req: Request) {
-	const denied = await guard();
+	const denied = await permit("media", "full");
 	if (denied) return denied;
 	const form = await req.formData();
 	const file = form.get("file");

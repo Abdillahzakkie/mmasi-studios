@@ -1,14 +1,14 @@
 {
   "note": "One entry per sid drawn in the contact sheets. The count is DERIVED by\ndesign/mockups/build-manifest.mjs, never typed — a manifest that disagrees\nwith the sheets is worse than no manifest, because it is believed.\n\nA row reads \"implemented\" with its route when a Next.js screen answers the\nframe, and \"omitted\" otherwise. The route is a Next App Router path.\n\nRe-run after changing any sheet: node design/mockups/build-manifest.mjs",
-  "generated": "2026-10-13",
-  "total": 30,
+  "generated": "2026-10-16",
+  "total": 33,
   "perSheet": {
     "01-public-desktop.html": 11,
     "02-public-mobile.html": 9,
-    "03-admin.html": 10
+    "03-admin.html": 13
   },
   "byStatus": {
-    "omitted": 30
+    "omitted": 33
   },
   "frames": [
     {
@@ -255,6 +255,42 @@
       "sid": "adm-signin",
       "name": "Sign in",
       "purpose": "/admin/sign-in — the shared studio sign-in, one centred card",
+      "sheet": "03-admin.html",
+      "surface": "admin",
+      "platform": "web",
+      "device": "1440x900",
+      "status": "omitted",
+      "reason": "No screen answers this frame yet.",
+      "route": null
+    },
+    {
+      "sid": "adm-team",
+      "name": "Team",
+      "purpose": "/admin/access — the people who can sign in, and the group that sets what each may touch",
+      "sheet": "03-admin.html",
+      "surface": "admin",
+      "platform": "web",
+      "device": "1440x900",
+      "status": "omitted",
+      "reason": "No screen answers this frame yet.",
+      "route": null
+    },
+    {
+      "sid": "adm-permissions",
+      "name": "Permission set",
+      "purpose": "/admin/access — Off / View / Manage per thing the studio owns; no policy to write",
+      "sheet": "03-admin.html",
+      "surface": "admin",
+      "platform": "web",
+      "device": "1440x900",
+      "status": "omitted",
+      "reason": "No screen answers this frame yet.",
+      "route": null
+    },
+    {
+      "sid": "adm-groups",
+      "name": "Groups",
+      "purpose": "/admin/access — a group bundles permission sets and the people who get them",
       "sheet": "03-admin.html",
       "surface": "admin",
       "platform": "web",

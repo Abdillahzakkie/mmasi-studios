@@ -153,7 +153,7 @@ function CaseStudyForm({ study, onDone }: { study: ApiCaseStudy | null; onDone: 
 								</select>
 							</div>
 							<div>
-								<label htmlFor="cs-tone">Tone</label>
+								<label htmlFor="cs-tone">Colour mood</label>
 								<select
 									id="cs-tone"
 									value={tone}
@@ -257,7 +257,7 @@ function CaseStudyForm({ study, onDone }: { study: ApiCaseStudy | null; onDone: 
 							{frames.map((f, i) => (
 								<RepeatRow key={i}>
 									<div>
-										<label htmlFor={`fr-tone-${i}`}>Tone</label>
+										<label htmlFor={`fr-tone-${i}`}>Colour mood</label>
 										<select
 											id={`fr-tone-${i}`}
 											value={f.tone}
@@ -273,7 +273,7 @@ function CaseStudyForm({ study, onDone }: { study: ApiCaseStudy | null; onDone: 
 										</select>
 									</div>
 									<div>
-										<label htmlFor={`fr-ratio-${i}`}>Ratio</label>
+										<label htmlFor={`fr-ratio-${i}`}>Frame shape</label>
 										<input
 											id={`fr-ratio-${i}`}
 											value={f.ratio}

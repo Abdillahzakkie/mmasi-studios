@@ -1,19 +1,19 @@
 import { NextResponse } from "next/server";
-import { guard } from "@/app/api/_lib/api";
+import { permit } from "@/app/api/_lib/api";
 import { deleteAsset, renameAsset } from "@/server/media";
 import { listObjects } from "@/server/storage";
 
 // Lists uploaded objects straight from storage, so the picker never drifts
 // from what is actually in the bucket (no separate media index to keep in sync).
 export async function GET() {
-	const denied = await guard();
+	const denied = await permit("media", "read");
 	if (denied) return denied;
 	const items = await listObjects();
 	return NextResponse.json(items);
 }
 
 export async function PATCH(req: Request) {
-	const denied = await guard();
+	const denied = await permit("media", "full");
 	if (denied) return denied;
 	const { key, name } = await req.json();
 	if (typeof key !== "string" || typeof name !== "string") {
@@ -28,7 +28,7 @@ export async function PATCH(req: Request) {
 }
 
 export async function DELETE(req: Request) {
-	const denied = await guard();
+	const denied = await permit("media", "full");
 	if (denied) return denied;
 	const { searchParams } = new URL(req.url);
 	const key = searchParams.get("key");
