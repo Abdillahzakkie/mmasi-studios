@@ -641,6 +641,26 @@ figcaption .spu{font-size:12.5px;color:var(--sheet-ink-2);display:block}
 .seg span{padding:7px 14px;font-size:var(--fs-sm);font-weight:650;color:var(--ink-3);
   border-radius:calc(var(--r-sm) - 1px)}
 .seg span.on{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+/* Access & team (IAM): the friendly permission list — each thing the studio owns
+   is a single Off / View / Manage choice in plain words, never a policy to write.
+   Reuses .card/.seg/.chip/.status/.badge; adds the row and the teammate row. */
+.seg.lv span.on.read{background:var(--gold-50);color:var(--gold-700);box-shadow:none}
+.seg.lv span.on.full{background:var(--gold-500);color:#1a1510;box-shadow:none}
+.permlist{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.narrow .permlist{grid-template-columns:1fr}
+.permrow{display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:9px 12px;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--surface)}
+.permrow .pname{font-size:var(--fs);font-weight:650;color:var(--ink)}
+.permrow .pdesc{font-size:var(--fs-sm);color:var(--ink-3);margin-top:1px}
+.listrow{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:10px 12px;border:1px solid var(--line);border-radius:var(--r-sm)}
+.listrow + .listrow{margin-top:8px}
+.listrow .who{display:flex;align-items:center;gap:10px}
+.listrow .who .lav{width:30px;height:30px;border-radius:50%;background:var(--surface-2);
+  border:1px solid var(--line);display:inline-flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;color:var(--ink-2);flex:none}
+.listrow .who .meta b{font-size:var(--fs);font-weight:650;color:var(--ink);display:block}
+.listrow .who .meta span{font-size:var(--fs-sm);color:var(--ink-3)}
 
 /* Every screen has a real empty state and a failure state with a reason. */
 .empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
