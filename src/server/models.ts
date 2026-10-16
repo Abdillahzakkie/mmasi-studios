@@ -149,6 +149,33 @@ const adminUserSchema = new Schema(
 		email: { type: String, required: true, unique: true, lowercase: true },
 		passwordHash: { type: String, required: true },
 		name: { type: String, default: "Studio admin" },
+		status: { type: String, enum: ["active", "disabled"], default: "active" },
+	},
+	{ timestamps: true },
+);
+
+// A reusable grant map (resource → "read" | "full"); the PolicyDocument contract
+// in @/constants/iam. `managedBy: "system"` marks the seeded policies the API
+// refuses to edit or delete.
+const policySchema = new Schema(
+	{
+		name: { type: String, required: true, unique: true },
+		description: { type: String, default: "" },
+		managedBy: { type: String, enum: ["system", "custom"], default: "custom" },
+		document: { type: Schema.Types.Mixed, default: {} },
+	},
+	{ timestamps: true, minimize: false },
+);
+
+// Groups bind policies to admin users. A user's effective permissions are the
+// merge of every policy across every group they belong to.
+const groupSchema = new Schema(
+	{
+		name: { type: String, required: true, unique: true },
+		description: { type: String, default: "" },
+		managedBy: { type: String, enum: ["system", "custom"], default: "custom" },
+		policies: [{ type: Schema.Types.ObjectId, ref: "Policy" }],
+		members: [{ type: Schema.Types.ObjectId, ref: "AdminUser" }],
 	},
 	{ timestamps: true },
 );
@@ -162,6 +189,8 @@ export type SiteContentDoc = InferSchemaType<typeof siteContentSchema>;
 export type InquiryDoc = InferSchemaType<typeof inquirySchema>;
 export type SettingDoc = InferSchemaType<typeof settingSchema>;
 export type AdminUserDoc = InferSchemaType<typeof adminUserSchema>;
+export type PolicyDoc = InferSchemaType<typeof policySchema>;
+export type GroupDoc = InferSchemaType<typeof groupSchema>;
 
 // `mongoose.models.X ?? model(...)` avoids "Cannot overwrite model" on HMR.
 export const Photo = mongoose.models.Photo ?? mongoose.model("Photo", photoSchema);
@@ -174,3 +203,5 @@ export const SiteContent =
 export const Inquiry = mongoose.models.Inquiry ?? mongoose.model("Inquiry", inquirySchema);
 export const Setting = mongoose.models.Setting ?? mongoose.model("Setting", settingSchema);
 export const AdminUser = mongoose.models.AdminUser ?? mongoose.model("AdminUser", adminUserSchema);
+export const Policy = mongoose.models.Policy ?? mongoose.model("Policy", policySchema);
+export const Group = mongoose.models.Group ?? mongoose.model("Group", groupSchema);

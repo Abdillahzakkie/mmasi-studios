@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
-import { clean, guard } from "@/app/api/_lib/api";
+import { clean, permit } from "@/app/api/_lib/api";
 import { connectDB } from "@/server/db";
 import { Inquiry } from "@/server/models";
 
 type Params = { params: Promise<{ id: string }> };
 
 export async function GET(_req: Request, ctx: Params) {
-	const denied = await guard();
+	const denied = await permit("inquiries", "read");
 	if (denied) return denied;
 	await connectDB();
 	const { id } = await ctx.params;
@@ -16,7 +16,7 @@ export async function GET(_req: Request, ctx: Params) {
 }
 
 export async function PATCH(req: Request, ctx: Params) {
-	const denied = await guard();
+	const denied = await permit("inquiries", "full");
 	if (denied) return denied;
 	await connectDB();
 	const { id } = await ctx.params;

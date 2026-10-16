@@ -9,6 +9,7 @@
  * public site renders graded Plate placeholders until then.
  */
 import mongoose from "mongoose";
+import { type PolicyDocument, RESOURCES } from "../src/constants/iam";
 import { SOCIALS, STUDIO } from "../src/constants/studio";
 import { CASE_STUDIES } from "../src/data/casestudies";
 import { DEFAULT_CONTENT } from "../src/data/content";
@@ -21,13 +22,46 @@ import {
 	AdminUser,
 	CaseStudy,
 	Film,
+	Group,
 	Photo,
+	Policy,
 	Reel,
 	Service,
 	Setting,
 	SiteContent,
 } from "../src/server/models";
 import { ensureStorageReady } from "../src/server/storage";
+
+// System policies (managedBy:"system" — the API refuses to edit or delete them).
+const fullAll = Object.fromEntries(RESOURCES.map((r) => [r, "full"])) as PolicyDocument;
+const SYSTEM_POLICIES: Array<{ name: string; description: string; document: PolicyDocument }> = [
+	{
+		name: "Owner",
+		description: "Full access to every admin section, including users and roles.",
+		document: fullAll,
+	},
+	{
+		name: "Editor",
+		description: "Manage all content and media; read inquiries; no settings or IAM.",
+		document: {
+			portfolio: "full",
+			reels: "full",
+			films: "full",
+			casestudies: "full",
+			services: "full",
+			content: "full",
+			media: "full",
+			inquiries: "read",
+		},
+	},
+	{
+		name: "Viewer",
+		description: "Read-only across the admin, except user and role management.",
+		document: Object.fromEntries(
+			RESOURCES.filter((r) => r !== "iam").map((r) => [r, "read"]),
+		) as PolicyDocument,
+	},
+];
 
 async function main() {
 	console.log("Preparing media storage…");
@@ -95,16 +129,52 @@ async function main() {
 	console.log("Seeding admin user…");
 	const email = (process.env.ADMIN_EMAIL || "").toLowerCase();
 	const password = process.env.ADMIN_PASSWORD || "";
+	let adminUser: { _id: unknown } | null = null;
 	if (!email || !password) {
 		console.warn("  ADMIN_EMAIL/ADMIN_PASSWORD not set — skipping admin user");
 	} else {
-		const existing = await AdminUser.findOne({ email });
-		if (existing) {
+		adminUser = await AdminUser.findOne({ email });
+		if (adminUser) {
 			console.log(`  admin ${email} already exists — password left unchanged`);
 		} else {
-			await AdminUser.create({ email, passwordHash: await hashPassword(password) });
+			adminUser = await AdminUser.create({
+				email,
+				passwordHash: await hashPassword(password),
+			});
 			console.log(`  created admin ${email}`);
 		}
+	}
+
+	// Backfill status on admins created before the field existed, so IAM reads a
+	// concrete "active" instead of undefined.
+	await AdminUser.updateMany({ status: { $exists: false } }, { $set: { status: "active" } });
+
+	console.log("Seeding IAM policies…");
+	for (const p of SYSTEM_POLICIES) {
+		await Policy.updateOne(
+			{ name: p.name },
+			{ $set: { description: p.description, managedBy: "system", document: p.document } },
+			{ upsert: true },
+		);
+	}
+
+	console.log("Seeding Owners group…");
+	// The Owners group holds the Owner policy and the seeded admin, so the
+	// existing admin logs in as a full owner and nothing locks them out.
+	const ownerPolicy = await Policy.findOne({ name: "Owner" });
+	if (ownerPolicy) {
+		await Group.updateOne(
+			{ name: "Owners" },
+			{
+				$set: { managedBy: "system" },
+				$setOnInsert: { description: "Studio owners with full access." },
+				$addToSet: {
+					policies: ownerPolicy._id,
+					...(adminUser ? { members: adminUser._id } : {}),
+				},
+			},
+			{ upsert: true },
+		);
 	}
 
 	const counts = {
@@ -114,6 +184,8 @@ async function main() {
 		caseStudies: await CaseStudy.countDocuments(),
 		services: await Service.countDocuments(),
 		admins: await AdminUser.countDocuments(),
+		policies: await Policy.countDocuments(),
+		groups: await Group.countDocuments(),
 	};
 	console.log("Done:", counts);
 	await mongoose.disconnect();
