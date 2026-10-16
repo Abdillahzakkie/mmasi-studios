@@ -180,6 +180,19 @@ const groupSchema = new Schema(
 	{ timestamps: true },
 );
 
+// A registered WebAuthn credential, additive alongside the password login.
+const passkeySchema = new Schema(
+	{
+		userId: { type: Schema.Types.ObjectId, ref: "AdminUser", required: true },
+		credentialId: { type: String, required: true, unique: true },
+		publicKey: { type: String, required: true },
+		counter: { type: Number, default: 0 },
+		transports: { type: [String], default: [] },
+		deviceName: { type: String, default: "Passkey" },
+	},
+	{ timestamps: true },
+);
+
 export type PhotoDoc = InferSchemaType<typeof photoSchema>;
 export type ReelDoc = InferSchemaType<typeof reelSchema>;
 export type FilmDoc = InferSchemaType<typeof filmSchema>;
@@ -191,6 +204,7 @@ export type SettingDoc = InferSchemaType<typeof settingSchema>;
 export type AdminUserDoc = InferSchemaType<typeof adminUserSchema>;
 export type PolicyDoc = InferSchemaType<typeof policySchema>;
 export type GroupDoc = InferSchemaType<typeof groupSchema>;
+export type PasskeyDoc = InferSchemaType<typeof passkeySchema>;
 
 // `mongoose.models.X ?? model(...)` avoids "Cannot overwrite model" on HMR.
 export const Photo = mongoose.models.Photo ?? mongoose.model("Photo", photoSchema);
@@ -205,3 +219,4 @@ export const Setting = mongoose.models.Setting ?? mongoose.model("Setting", sett
 export const AdminUser = mongoose.models.AdminUser ?? mongoose.model("AdminUser", adminUserSchema);
 export const Policy = mongoose.models.Policy ?? mongoose.model("Policy", policySchema);
 export const Group = mongoose.models.Group ?? mongoose.model("Group", groupSchema);
+export const Passkey = mongoose.models.Passkey ?? mongoose.model("Passkey", passkeySchema);
