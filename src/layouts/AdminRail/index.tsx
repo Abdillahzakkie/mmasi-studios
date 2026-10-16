@@ -4,8 +4,17 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styled from "styled-components";
 import useSWR from "swr";
+import { can, type Permissions, type Resource } from "@/constants/iam";
 
 const fetcher = (url: string) => fetch(url).then((r) => r.json());
+const initials = (s: string) =>
+	s
+		.split(/[\s@.]+/)
+		.map((w) => w[0])
+		.filter(Boolean)
+		.slice(0, 2)
+		.join("")
+		.toUpperCase() || "ME";
 
 const Rail = styled.nav`
 	width: 236px;
@@ -116,22 +125,35 @@ const Rail = styled.nav`
 	}
 `;
 
-const ENTRIES = [
-	{ href: "/admin", label: "Portfolio" },
-	{ href: "/admin/reels", label: "Reels & Films" },
-	{ href: "/admin/casestudies", label: "Case studies" },
-	{ href: "/admin/services", label: "Services" },
-	{ href: "/admin/content", label: "Content" },
-	{ href: "/admin/media", label: "Media" },
-	{ href: "/admin/inquiries", label: "Inquiries" },
-	{ href: "/admin/settings", label: "Settings" },
+const ENTRIES: { href: string; label: string; resource: Resource }[] = [
+	{ href: "/admin", label: "Portfolio", resource: "portfolio" },
+	{ href: "/admin/reels", label: "Reels & Films", resource: "reels" },
+	{ href: "/admin/casestudies", label: "Case studies", resource: "casestudies" },
+	{ href: "/admin/services", label: "Services", resource: "services" },
+	{ href: "/admin/content", label: "Page content", resource: "content" },
+	{ href: "/admin/media", label: "Media", resource: "media" },
+	{ href: "/admin/inquiries", label: "Inquiries", resource: "inquiries" },
+	{ href: "/admin/settings", label: "Settings", resource: "settings" },
+	{ href: "/admin/access", label: "Access & team", resource: "iam" },
 ];
+
+interface Me {
+	name?: string;
+	email?: string;
+	permissions?: Permissions;
+}
 
 export default function AdminRail() {
 	const pathname = usePathname();
 	// Live count of New inquiries from the backend (0 while loading).
 	const { data } = useSWR<{ status: string }[]>("/api/admin/inquiries", fetcher);
 	const newCount = Array.isArray(data) ? data.filter((i) => i.status === "New").length : 0;
+	const { data: me } = useSWR<Me>("/api/auth/me", fetcher);
+	const perms = me?.permissions;
+	// Fail open while permissions are still loading or absent — the API enforces
+	// access regardless, so the rail only hides what a teammate truly can't open.
+	const entries = ENTRIES.filter((e) => !perms || can(perms, e.resource, "read"));
+	const who = me?.name || me?.email || "MmasiEjikeme";
 	return (
 		<Rail>
 			<div className="brand">
@@ -140,7 +162,7 @@ export default function AdminRail() {
 				</span>
 				<span>MmasiEjikeme</span>
 			</div>
-			{ENTRIES.map((e) => {
+			{entries.map((e) => {
 				const on = e.href === "/admin" ? pathname === e.href : pathname.startsWith(e.href);
 				return (
 					<Link key={e.href} href={e.href} className="rentry" data-on={on}>
@@ -154,8 +176,8 @@ export default function AdminRail() {
 			})}
 			<div className="spacer" />
 			<div className="ruser">
-				<span className="av">ME</span>
-				<span>MmasiEjikeme</span>
+				<span className="av">{initials(who)}</span>
+				<span>{who}</span>
 			</div>
 		</Rail>
 	);
