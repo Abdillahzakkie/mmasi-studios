@@ -115,11 +115,33 @@ const Rail = styled.nav`
 		font-weight: 700;
 		font-size: 12px;
 	}
+	.signout {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		padding: 9px 11px;
+		margin-top: 2px;
+		border-radius: var(--mm-r-sm);
+		border: none;
+		background: none;
+		width: 100%;
+		text-align: left;
+		cursor: pointer;
+		font: inherit;
+		font-size: 14px;
+		font-weight: 550;
+		color: var(--mm-ink-2);
+	}
+	.signout:hover {
+		background: var(--mm-surface-2);
+		color: var(--mm-ink);
+	}
 
 	@media (max-width: 820px) {
 		.brand span:last-child,
 		.rentry span:not(.ic):not(.count),
-		.ruser span:last-child {
+		.ruser span:last-child,
+		.signout span:not(.ic) {
 			display: none;
 		}
 	}
@@ -154,6 +176,11 @@ export default function AdminRail() {
 	// access regardless, so the rail only hides what a teammate truly can't open.
 	const entries = ENTRIES.filter((e) => !perms || can(perms, e.resource, "read"));
 	const who = me?.name || me?.email || "MmasiEjikeme";
+	const signOut = async () => {
+		await fetch("/api/auth/logout", { method: "POST" });
+		// Full reload so no cached admin state survives the sign-out.
+		window.location.href = "/signin";
+	};
 	return (
 		<Rail>
 			<div className="brand">
@@ -179,6 +206,10 @@ export default function AdminRail() {
 				<span className="av">{initials(who)}</span>
 				<span>{who}</span>
 			</div>
+			<button type="button" className="signout" onClick={signOut}>
+				<span className="ic" aria-hidden />
+				<span>Sign out</span>
+			</button>
 		</Rail>
 	);
 }
