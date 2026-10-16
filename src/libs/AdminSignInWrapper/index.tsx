@@ -1,5 +1,6 @@
 "use client";
 
+import { startAuthentication } from "@simplewebauthn/browser";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "@/components";
@@ -16,6 +17,11 @@ export default function AdminSignInWrapper() {
 	const [error, setError] = useState("");
 	const [busy, setBusy] = useState(false);
 
+	const goNext = () => {
+		const next = new URLSearchParams(window.location.search).get("next");
+		router.push(next || "/admin");
+	};
+
 	const submit = async () => {
 		setBusy(true);
 		setError("");
@@ -29,10 +35,39 @@ export default function AdminSignInWrapper() {
 				setError("Those credentials were not recognised.");
 				return;
 			}
-			const next = new URLSearchParams(window.location.search).get("next");
-			router.push(next || "/admin");
+			goNext();
 		} catch {
 			setError("Could not reach the studio. Try again.");
+		} finally {
+			setBusy(false);
+		}
+	};
+
+	const signInWithPasskey = async () => {
+		setBusy(true);
+		setError("");
+		try {
+			const optRes = await fetch("/api/auth/passkey/authenticate/options", {
+				method: "POST",
+			});
+			if (!optRes.ok) throw new Error("options");
+			const optionsJSON = await optRes.json();
+			const response = await startAuthentication({ optionsJSON });
+			const verifyRes = await fetch("/api/auth/passkey/authenticate/verify", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ response }),
+			});
+			if (!verifyRes.ok) {
+				setError("That passkey was not recognised.");
+				return;
+			}
+			goNext();
+		} catch (e) {
+			// A user who cancels the prompt throws NotAllowedError — not an error to shout about.
+			if ((e as Error).name !== "NotAllowedError") {
+				setError("Passkey sign-in is not available on this device.");
+			}
 		} finally {
 			setBusy(false);
 		}
@@ -76,9 +111,15 @@ export default function AdminSignInWrapper() {
 					<Button variant="pri" block onClick={submit}>
 						{busy ? "Signing in…" : "Sign in to the studio"}
 					</Button>
+					<Button variant="outline" block onClick={signInWithPasskey}>
+						Sign in with a passkey
+					</Button>
 				</FormGrid>
 				{error && <p className="error">{error}</p>}
-				<p className="hint">One account for the whole studio.</p>
+				<p className="hint">
+					A passkey signs you in with your fingerprint, face or device PIN — no password
+					to type. Add one from Settings; email and password keep working either way.
+				</p>
 			</SignCard>
 		</SignInShell>
 	);

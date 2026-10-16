@@ -5,6 +5,7 @@ import useSWR from "swr";
 import { Button } from "@/components";
 import { SOCIALS, STUDIO } from "@/constants/studio";
 import { Card, FormGrid, Muted, PaneHead, Stack, ToggleRow } from "@/libs/adminUi";
+import PasskeysCard from "./PasskeysCard";
 
 interface Settings {
 	name?: string;
@@ -182,6 +183,8 @@ export default function AdminSettingsWrapper() {
 					</ToggleRow>
 					<Muted>Saved to the studio profile the public Contact page reads.</Muted>
 				</Card>
+
+				<PasskeysCard />
 			</Stack>
 		</>
 	);
