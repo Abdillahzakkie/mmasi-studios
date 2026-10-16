@@ -702,6 +702,11 @@ figcaption .spu{font-size:12.5px;color:var(--sheet-ink-2);display:block}
 .rail .ruser .av{width:30px;height:30px;border-radius:50%;background:var(--surface-2);flex:none;
   display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;
   color:var(--ink-2)}
+.rail .signout{display:flex;align-items:center;gap:10px;padding:9px 11px;margin-top:2px;
+  border-radius:var(--r-sm);border:none;background:none;width:100%;text-align:left;cursor:pointer;
+  font:inherit;font-size:14px;font-weight:550;color:var(--ink-2)}
+.rail .signout:hover{background:var(--surface-2);color:var(--ink)}
+.rail .signout .ic{width:16px;height:16px;border-radius:4px;background:currentColor;opacity:.5;flex:none}
 
 .pane{flex:1;min-width:0;display:flex;flex-direction:column;overflow:hidden}
 .phead{flex:none;display:flex;align-items:center;gap:12px;padding:20px 24px 14px}
