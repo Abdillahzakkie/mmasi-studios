@@ -1,4 +1,5 @@
 # MMASIEJIKEME STUDIO
+
 ## Creative Vision, Client Experience & Studio Operations Blueprint
 
 ---
@@ -16,6 +17,7 @@ This document outlines **what we want from our digital presence** and **how the 
 The website is the digital flagship of MmasiEjikeme Studio. It is not an ordinary photo gallery or a generic template; it is an intentionally art-directed, immersive space that immediately communicates creative authority, sophistication, and world-class craft.
 
 #### A. Core Business Objectives
+
 1. **Showcase Artistic Mastery Without Distraction**:
    - The work itself must always take center stage.
    - Photography and films must feel alive, intentional, and dignified.
@@ -38,7 +40,8 @@ The website is the digital flagship of MmasiEjikeme Studio. It is not an ordinar
 ### 3. How the Studio Works: Philosophy & Creative Disciplines
 
 #### A. Creative Philosophy
-> *"Every frame is a deliberate dialogue between natural light, raw human emotion, and timeless elegance."*
+
+> _"Every frame is a deliberate dialogue between natural light, raw human emotion, and timeless elegance."_
 
 The studio rejects fast-fashion trends, oversaturated filters, and formulaic templates. Every shoot is approached with:
 - **Patience and Observation**: Capturing quiet, unscripted moments as well as deliberate, art-directed compositions.
@@ -99,11 +102,13 @@ The studio operates on a high-touch, personalized workflow designed to make clie
 ```
 
 #### Step 1: Discovery & Immersion
+
 - A prospective client lands on the studio website.
 - They experience the ambient imagery, browse curated photography galleries by category, watch 9:16 vertical reels, and view 16:9 cinematic films.
 - Every photograph and reel includes context (category, title, camera optics, year, location).
 
 #### Step 2: Guided Pre-Booking Inquiry
+
 - The client decides to inquire about a session.
 - They can click **"Book on WhatsApp"** anywhere on the website, or use the interactive **Session Inquiry Builder**.
 - The inquiry builder allows the client to provide:
@@ -116,6 +121,7 @@ The studio operates on a high-touch, personalized workflow designed to make clie
 - Clicking the button launches WhatsApp directly, pre-filling this information so the client does not have to retype anything.
 
 #### Step 3: Direct Consultation & Creative Alignment
+
 - The studio receives the pre-filled inquiry on WhatsApp Business (+234 8147099175).
 - MmasiEjikeme or the studio team responds within 24 hours.
 - The studio discusses:
@@ -125,20 +131,24 @@ The studio operates on a high-touch, personalized workflow designed to make clie
   - Specific deliverables required
 
 #### Step 4: Proposal, Retainer & Date Reservation
+
 - A clear, transparent service proposal is provided based on the client's scope.
 - Dates are officially reserved upon receipt of an agreed booking retainer.
 - The client receives a shoot itinerary and preparation checklist.
 
 #### Step 5: Production & Shooting Day
+
 - On the day of the shoot, the studio executes with dual-slot professional cinema and stills camera systems, prime lenses, and professional lighting equipment.
 - MmasiEjikeme directs posing, pacing, and mood, creating a comfortable, collaborative atmosphere so subjects look natural and composed.
 
 #### Step 6: Post-Production & Art Direction
+
 - The studio culls and curates the finest frames and takes.
 - Photographs undergo high-end retouching with natural skin texture preservation and editorial tone curves.
 - Cinema films and reels undergo cinematic color grading, sound design, dialogue balancing, and licensed musical score integration.
 
 #### Step 7: Final Master Delivery
+
 - The client receives a password-protected, high-resolution digital master gallery.
 - Formats are provided for both digital sharing (optimized for mobile/social) and full-resolution archival storage/print production.
 
@@ -147,8 +157,9 @@ The studio operates on a high-touch, personalized workflow designed to make clie
 ### 5. Detailed Public Website Experience: What We Want
 
 #### A. Website Header & Navigation
+
 - **Persistent Header**: Always visible at the top of the screen on all pages, including when a shared photograph or film modal is open.
-- **Branding**: Prominent studio monogram and name (*MmasiEjikeme Studio*).
+- **Branding**: Prominent studio monogram and name (_MmasiEjikeme Studio_).
 - **Navigation Links**:
   - **Home**: The studio's cinematic front door.
   - **Photography**: The complete curated stills portfolio.
@@ -162,9 +173,10 @@ The studio operates on a high-touch, personalized workflow designed to make clie
   - **Mobile Menu**: Smooth, full-screen drawer for phone screens with clean link hierarchy.
 
 #### B. Homepage Requirements
+
 - **Hero Section**:
   - Atmospheric, slow-moving background imagery that immediately establishes the studio's tone.
-  - Editorial headline: *"Visual Stories. Timeless Frames."*
+  - Editorial headline: _"Visual Stories. Timeless Frames."_
   - Clear calls to action to explore work or book a session.
   - Discreet scroll indicator guiding visitors downward.
 - **Curated Highlights Grid**:
@@ -184,9 +196,10 @@ The studio operates on a high-touch, personalized workflow designed to make clie
   - A prominent booking banner encouraging prospective clients with upcoming events or projects to chat directly on WhatsApp.
 
 #### C. Photography Page Requirements
+
 - **Editorial Banner**: Introduces the stills collection and monograph philosophy.
 - **Category Filter Tabs**:
-  - *All*, *Portraits*, *Weddings & Ceremonies*, *Fashion & Editorial*, *Commercial & Brand*, *Events*.
+  - _All_, _Portraits_, _Weddings & Ceremonies_, _Fashion & Editorial_, _Commercial & Brand_, _Events_.
   - Clicking a tab smoothly animates the gallery to display only matching work.
 - **Masonry Gallery**:
   - Elegant column flow accommodating varied image aspect ratios (vertical portraits, horizontal landscapes, square compositions).
@@ -198,20 +211,22 @@ The studio operates on a high-touch, personalized workflow designed to make clie
   - Includes an **"Inquire For Similar Shoot"** button that links directly to the inquiry builder with the photo's category pre-selected.
 
 #### D. Films & Motion Reels Page Requirements
+
 - **Dual Format Architecture**: Clear visual distinction between short-form mobile content and full widescreen productions.
   1. **Short-Form Reels (9:16 Vertical)**:
      - Vertical cards formatted for mobile viewing.
-     - Displays duration badges (e.g., *"0:45 Reel"*), titles, and categories.
+     - Displays duration badges (e.g., _"0:45 Reel"_), titles, and categories.
      - Ideal for rapid browsing of fashion clips, ceremony highlights, and brand teasers.
   2. **Cinematic Productions (16:9 Widescreen)**:
      - Full widescreen cinema cards with play overlays.
-     - Displays resolution badges (e.g., *"4K UHD"*), running time, and creative narrative synopses.
+     - Displays resolution badges (e.g., _"4K UHD"_), running time, and creative narrative synopses.
      - Focuses on wedding films, documentary monographs, and brand campaign films.
 - **Integrated Video Player**:
   - Smooth modal player with native controls (play/pause, volume, fullscreen).
   - Displays reel metadata and includes an instant inquiry button.
 
 #### E. Services & Investment Page Requirements
+
 - **Clear Discipline Breakdown**:
   - Dedicated cards for Editorial & Portrait Sessions, Wedding Stills & Film, Commercial Campaigns, Short-Form Content, and Custom Monographs.
 - **Comprehensive Deliverables List**:
@@ -222,6 +237,7 @@ The studio operates on a high-touch, personalized workflow designed to make clie
   - Every package card features its own direct button that launches WhatsApp with that exact service pre-filled.
 
 #### F. About Page Requirements
+
 - **The Artist & Philosophy**:
   - Authentic creative biography detailing MmasiEjikeme's journey, artistic principles, and visual discipline.
   - Studio portrait and editorial pull quote.
@@ -232,6 +248,7 @@ The studio operates on a high-touch, personalized workflow designed to make clie
   - Reassures high-end clients that technical execution and equipment redundancy are uncompromising.
 
 #### G. Contact & Session Inquiry Builder Requirements
+
 - **Interactive Builder**:
   - Fields for name, service selection, tentative dates, location, and project vision.
   - Live preview demonstrating the exact message that will be sent.
@@ -243,6 +260,7 @@ The studio operates on a high-touch, personalized workflow designed to make clie
   - 24-hour response time guarantee.
 
 #### H. Individual Project Case Studies (`/work/[slug]`)
+
 - **Immersive Cover**: Full-bleed hero banner with title, category, and client/monograph context.
 - **Specifications Ribbon**: Discipline, client context, location, year, and studio role.
 - **Artistic Vision & Production Notes**: In-depth narrative explaining creative direction, lighting choices, and logistical execution.
